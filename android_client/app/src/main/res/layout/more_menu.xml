@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.notes_of_dolphi.LoginActivity"
+    tools:showIn="right_navigation_view"
+    android:layout_height="wrap_content" android:layout_width="wrap_content">
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favorite"
+        android:contentDescription="@string/content_description_favorite"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/search"
+        android:contentDescription="@string/content_description_search"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/more"
+        android:title="@string/more"
+        android:contentDescription="@string/content_description_more"
+        app:showAsAction="never" />
+
+</menu>

@@ -1,0 +1,1 @@
+When save notes from server -> set synchronized_server to true on client side

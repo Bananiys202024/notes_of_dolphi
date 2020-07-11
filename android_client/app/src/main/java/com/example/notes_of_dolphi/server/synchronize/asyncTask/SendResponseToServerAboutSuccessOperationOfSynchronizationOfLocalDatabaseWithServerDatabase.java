@@ -1,0 +1,61 @@
+package com.example.notes_of_dolphi.server.synchronize.asyncTask;
+
+import android.os.AsyncTask;
+
+import com.example.notes_of_dolphi.model.Constants;
+import com.example.notes_of_dolphi.model.Message;
+import com.example.notes_of_dolphi.model.User;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SendResponseToServerAboutSuccessOperationOfSynchronizationOfLocalDatabaseWithServerDatabase extends AsyncTask<List<User>, Void, String> {
+
+    @Override
+    protected String doInBackground(List<User>... lists) {
+
+
+        try
+        {
+            Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+
+            //send request
+            OutputStream outputStream = socket.getOutputStream();
+            ObjectOutputStream object_output_stream = new ObjectOutputStream(outputStream);
+
+            Message message = new Message();
+            message.setMessage("finally_synchronize_from_android_ang_get_result");
+            message.setList_all_users(lists[0]);
+
+            List<Message> request = new ArrayList();
+            request.add(message);
+            object_output_stream.writeObject(request);
+            //..
+
+            //get response
+            InputStream inputStream = socket.getInputStream();
+            ObjectInputStream object_input_stream = new ObjectInputStream(inputStream);
+
+            //add alert, how much notes was changed;
+            String result = (String) object_input_stream.readObject();
+
+            return result;
+
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return "Something wrong.";
+    }
+}

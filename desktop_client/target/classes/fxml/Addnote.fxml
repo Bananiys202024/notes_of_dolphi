@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="notes.of.dolphi.Notebook.controller.AddnoteController">
+  <columnConstraints>
+    <ColumnConstraints percentWidth="5" />
+    <ColumnConstraints percentWidth="20" />
+    <ColumnConstraints hgrow="NEVER" percentWidth="70" />
+    <ColumnConstraints percentWidth="5" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints percentHeight="5" />
+    <RowConstraints percentHeight="90" />
+    <RowConstraints percentHeight="5" />
+  </rowConstraints>
+   <children>
+      <GridPane style="-fx-vgap: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints percentWidth="100" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints percentHeight="5" />
+          <RowConstraints percentHeight="5" />
+          <RowConstraints percentHeight="5" />
+
+            </rowConstraints>
+         <children>
+            <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#go_to_page_all_notes" style="-fx-background-color: purple; -fx-text-fill: white;" text="All notes">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#logout_and_exit" style="-fx-background-color: purple; -fx-text-fill: white;" text="Log out" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: purple; -fx-text-fill: white;" text="Add note" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </GridPane>
+      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints percentWidth="100" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints percentHeight="10" />
+            <RowConstraints percentHeight="5" />
+           <RowConstraints percentHeight="10" />
+            <RowConstraints percentHeight="10" />
+             <RowConstraints percentHeight="10" />
+          </rowConstraints>
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="dateToday" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" style="-fx-text-fill: white;" text="4 Jan of 2020" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <JFXTextField fx:id="title" alignment="CENTER" focusColor="#1506f2" labelFloat="true" promptText="Title" style="-fx-text-fill: white;" unFocusColor="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+               <children>
+                  <JFXButton alignment="CENTER" onAction="#create_new_note" style="-fx-background-color: white;" text="Save" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="166.0" prefWidth="350.0" GridPane.rowIndex="1">
+               <children>
+                  <Label fx:id="status" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" textFill="#056b15" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <JFXTextArea fx:id="note" focusColor="#1506f2" labelFloat="true" promptText="Fill some notes here" style="-fx-text-fill: white;" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextArea>
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

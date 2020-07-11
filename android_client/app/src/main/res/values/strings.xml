@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">notes_of_dolphi</string>
+    <string name="action_settings">Settings</string>
+    <string name="email_hint">email@gmail.com</string>
+    <string name="password_hint">password</string>
+    <string name="log_in">Log in</string>
+    <string name="title_activity_add_note">AddNoteActivity</string>
+    <string name="email_login">email@mail.com</string>
+    <string name="password_login">password</string>
+    <string name="title_add_note">title</string>
+    <string name="note_add_note">Some interesting thinks?</string>
+    <string name="create_new_note">Create new note</string>
+    <string name="title_activity_update_note">UpdateNoteActivity</string>
+    <string name="update_note"></string>
+    <string name="registration">registration</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="create_new_user">Create new user</string>
+    <string name="phone">phone</string>
+    <string name="username">username</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_add_draft">AddDraftActivity</string>
+
+    <string name="content_description_favorite"> content description</string>
+    <string name="favorite">favorite</string>
+    <string name="content_description_search">content description search</string>
+    <string name="search">search</string>
+    <string name="content_description_here">content description here</string>
+    <string name="more">more</string>
+    <string name="content_description_more">more</string>
+    <string name="title_activity_statistic">StatisticActivity</string>
+
+</resources>

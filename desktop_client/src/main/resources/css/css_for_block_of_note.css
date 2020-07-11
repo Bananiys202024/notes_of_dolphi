@@ -1,0 +1,60 @@
+
+#label_date
+{
+	-fx-text-fill: blue;
+}
+
+#label_v_box_date
+{
+	
+	-fx-font-size: 25;
+	
+	-fx-wrap-text: true;
+	-fx-padding: 10;	
+	-fx-background: transparent;
+	-fx-background-color: #333335;
+		
+}
+
+
+#label_title
+{
+	-fx-font-size: 20;
+	-fx-text-fill: white;
+}
+
+#v_box_for_title_and_main_text
+{
+		-fx-background-color: #333335;
+		-fx-padding: 10 0 10 0;
+}
+
+#label_main_text
+{
+	-fx-font-size: 18;
+	-fx-text-fill: #d1d1d5;
+	-fx-wrap-text: true;
+	
+}
+
+
+#button_delete
+{
+	-fx-font-size: 14;
+	-fx-text-fill: white;
+	-fx-wrap-text: true;
+	-fx-padding: 10;	
+	-fx-background-color: #333335;
+}
+
+#button_edit
+{
+	-fx-font-size: 14;
+	-fx-text-fill: white;
+	-fx-wrap-text: true;
+	-fx-padding: 10;	
+	-fx-background-color: #333335;
+}
+
+
+

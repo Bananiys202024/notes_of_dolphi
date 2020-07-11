@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.notes_of_dolphi.LoginActivity"
+    tools:showIn="navigation_view">
+
+    <item android:title="Tabs">
+
+        <menu>
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/nav_message"
+            android:icon="@drawable/ic_fire"
+            android:title="notes"/>
+
+
+        <item android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_email"
+            android:title="draft"/>
+
+
+    </group>
+        </menu>
+    </item>
+
+    <item android:title="Options">
+
+        <menu>
+
+            <item android:id="@+id/nav_synch"
+                android:title="Synchronization"
+                android:icon="@drawable/ic_sync"/>
+
+            <group android:checkableBehavior="single">
+            <item android:id="@+id/nav_statistic"
+                android:title="Brief statistic"
+                android:icon="@drawable/ic_statistic"/>
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>
