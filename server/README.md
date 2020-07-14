@@ -7,7 +7,7 @@
 <h6>
     Java&IDE: JDK8 Eclipse<br>
     Database: sql lite <br>
-    Build Tool: Gradle<br>
+    Build Tool: Maven<br>
     Linux： Arch Linux<br>
     Other: ---<br>
 </h6>
