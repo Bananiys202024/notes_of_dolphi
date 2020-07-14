@@ -1,33 +1,26 @@
+# notes_of_dolphi
 
-1. Check process of delete for local database
-2. Fix problem with socek.isConnected for synch and statistic
-3. add column synchronized_deleted_notes to server/client;
+<h2>Android client part</h2>
+ Simple diary.
+<h2>Frameworks and tools</h2>
 
+<h6>
+    Java&IDE: JDK8 Eclipse, Android studio<br>
+    Database: sql lite <br>
+    Build Tool: Gradle<br>
+    Linux： Arch Linux<br>
+    Other: ---<br>
+</h6>
 
+<h2>System Features</h2>
 
+<h6>
+    <ul>
+        <li>Offline mode</li>
+        <li>Online mode</li>
+        <li>Synchronization of deleted notes</li>
+        <li>Totally synchronization</li>
+        <li>Ability get brief statistic about application</li>
+   </ul>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4. In synchronization_delete method check synchronization by that method;
-  4.1  get local list not synchronized_deleted
-  4.2  put mark on that list
-  4.3  send to server
-  4.4. on server find that notes on server with help of read_by_date_of_note
-  4.5  put mark on those notes on server(UPDATE)
-  4.6  Send not synchronized list of deleted recordse from server
-  4.7  Find that notes on client read_by_date_of_note
-  4.8 put marks as synchronized to true and change column deleted to true;
-  finish
+</h6>
