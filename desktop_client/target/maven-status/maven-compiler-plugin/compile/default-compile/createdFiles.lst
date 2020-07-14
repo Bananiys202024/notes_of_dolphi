@@ -1,10 +1,10 @@
-notes/of/dolphi/model/Message.class
-notes/of/dolphi/model/Note.class
-notes/of/dolphi/model/Cashe.class
+com/example/notes_of_dolphi/model/Message.class
 notes/of/dolphi/Notebook/server/ServerDiary.class
 notes/of/dolphi/Notebook/utils/DateFormat.class
-notes/of/dolphi/model/Note$Builder.class
+com/example/notes_of_dolphi/model/Constants.class
+com/example/notes_of_dolphi/model/Note.class
 notes/of/dolphi/Notebook/utils/Sorter.class
-notes/of/dolphi/model/Note$1.class
-notes/of/dolphi/model/Constants.class
+com/example/notes_of_dolphi/model/Cashe.class
+com/example/notes_of_dolphi/model/Draft.class
+com/example/notes_of_dolphi/model/User.class
 notes/of/dolphi/Notebook/server/ServerLogin.class

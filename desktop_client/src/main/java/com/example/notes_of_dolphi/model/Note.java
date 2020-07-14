@@ -2,26 +2,28 @@ package com.example.notes_of_dolphi.model;
 
 import java.io.Serializable;
 
-import javax.annotation.Generated;
-
 public class Note implements Serializable {
 
 	private int id;
 	private String title;
 	private String note;
 	private String date_of_note;
+	private String owner;
+	private Boolean synchronized_server;
+	private Boolean deleted;
 
-	public Note(){}
-	
-	@Generated("SparkTools")
-	private Note(Builder builder) {
-		this.title = builder.title;
-		this.note = builder.note;
-		this.date_of_note = builder.date_of_note;
-		this.id = builder.id;
+	static final long serialVersionUID = -875341142932566369L;
+
+	public Note(int id, String title, String note, String date_of_note) {
+		this.id = id;
+		this.title = title;
+		this.note = note;
+		this.date_of_note = date_of_note;
 	}
 
-	public String getTitle() {
+    public Note() {}
+
+    public String getTitle() {
 		return title;
 	}
 
@@ -52,53 +54,32 @@ public class Note implements Serializable {
 	public int getId() {
 		return id;
 	}
-	
-	/**
-	 * Creates builder to build {@link Note}.
-	 * @return created builder
-	 */
-	@Generated("SparkTools")
-	public static Builder builder() {
-		return new Builder();
+
+	public String getOwner() {
+		return owner;
 	}
-	
 
-	/**
-	 * Builder to build {@link Note}.
-	 */
-	@Generated("SparkTools")
-	public static final class Builder {
-		private String title;
-		private String note;
-		private String date_of_note;
-		private int id;
-
-		private Builder() {
-		}
-
-		public Builder withTitle(String title) {
-			this.title = title;
-			return this;
-		}
-
-		public Builder withNote(String note) {
-			this.note = note;
-			return this;
-		}
-
-		public Builder withDate_of_note(String date_of_note) {
-			this.date_of_note = date_of_note;
-			return this;
-		}
-		
-		public Builder withId(int id) {
-			this.id = id;
-			return this;
-		}
-
-		public Note build() {
-			return new Note(this);
-		}
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
-	
+
+	public Boolean getSynchronized_server() {
+		return synchronized_server;
+	}
+
+	public void setSynchronized_server(Boolean synchronized_server) {
+		this.synchronized_server = synchronized_server;
+	}
+
+	public Boolean getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 }

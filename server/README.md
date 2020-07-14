@@ -3,8 +3,15 @@ java -cp target/server.part-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.do
   
 mvn -offline install; java -cp target/server.part-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.dolphi.server.part.Main
 
-+3 finish synchronization of deleted records;
++1 fixing offline check android;
++1 fixing double icon android;
++1 android icon
 
+put on github;
+and change read_me
+and make some other changes;
+
+check media player on github;
 
 when make simple synchronization need to check by column delete;
 if record deleted then miss that

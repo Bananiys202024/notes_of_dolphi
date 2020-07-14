@@ -11,19 +11,13 @@ import com.example.notes_of_dolphi.model.Message;
 
 
 public class GetterOforders {
-
 	public static Message get_request_from_client(Socket socket) throws IOException, ClassNotFoundException {
 		
 		InputStream inputStream = socket.getInputStream();
 		ObjectInputStream object_input_stream = new ObjectInputStream(inputStream);
 		
-		System.out.println("please, wait resources is loading");
-		
 		List<Message> message = (List<Message>) object_input_stream.readObject();
-
-		System.out.println("finish loading resources");
 		
 		return message.get(0);
-	}
-	
+	}	
 }

@@ -20,7 +20,7 @@ public class ServerDiary {
 	public List<Note> read() throws IOException, ClassNotFoundException {
 				
 		//open socket 
-		Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+		Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 		System.out.println("Connected");
 		//...
 		
@@ -37,7 +37,7 @@ public class ServerDiary {
 		
 		Message message = new Message();
 		message.setUser(user);
-		message.setMessage("read");
+		message.setMessage("read_notes_online");
 		
 		List<Message> request = new ArrayList();
 		request.add(message);
@@ -60,7 +60,7 @@ public class ServerDiary {
 	public String delete(int id) throws IOException, ClassNotFoundException {
 
 				//open socket 
-				Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+				Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 				System.out.println("Connected");
 				//...
 				
@@ -104,7 +104,7 @@ public class ServerDiary {
 	public String create(Note model) throws IOException, ClassNotFoundException {
 	
 		//open socket 
-		Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+		Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 		System.out.println("Connected");
 		//...
 		
@@ -145,7 +145,7 @@ public class ServerDiary {
 	public Note read_by_id(int id) throws IOException, ClassNotFoundException {
 		
 		//open socket 
-		Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+		Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 		System.out.println("Connected");
 		//...
 		
@@ -190,7 +190,7 @@ public class ServerDiary {
 		
 		
 		//open socket 
-		Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+		Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 		System.out.println("Connected");
 		//...
 		
@@ -205,10 +205,11 @@ public class ServerDiary {
 		
 		User user = new User();
 		user.setEmail(logged_user);
-		
+			
 		Message message = new Message();
 		message.setUser(user);
 		message.setMessage("update");
+		message.setNote(note);
 		
 		List<Message> request = new ArrayList();
 		request.add(message);

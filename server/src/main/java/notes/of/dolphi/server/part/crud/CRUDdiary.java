@@ -186,9 +186,7 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
 	{
 	
 		List<Note> list = new ArrayList<Note>();
-		
-		System.out.println("logged_user--"+ logged_user);
-		
+				
         try
         (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
@@ -237,9 +235,7 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
             pstmt.setInt(1, id);
             // execute the delete statement
             pstmt.executeUpdate();
- 
-            System.out.println("Remove---"+id);
-            
+             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -251,7 +247,6 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
 	public Note read_by_id(String logged_user, int id) {
 		
 		Note note = new Note();
-		
         try
         (Connection conn = this.connect();
         PreparedStatement pstmt = conn.prepareStatement(read_by_id))
@@ -262,14 +257,12 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
         ResultSet rs = pstmt.executeQuery();	 
         	 
         while (rs.next()) {
-        	
+
         	note.setId(rs.getInt("id"));
-        	note.setDeleted(rs.getInt("deleted") != 0);
             note.setTitle(rs.getString("title"));
         	note.setDate_of_note(rs.getString("date_of_add"));
         	note.setNote(rs.getString("note"));
         	note.setOwner(rs.getString("owner"));
-        	note.setSynchronized_server(rs.getInt("synchronized_android") != 0);
         	
         	}	
         
@@ -283,12 +276,19 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
 		
 		return note;
 	}
+	
+	
+	
 
 	public String update(Note note) {
 		
 	        try (Connection conn = this.connect();
 	                PreparedStatement pstmt = conn.prepareStatement(update_by_id)) {
 	 
+	        	System.out.println("Checking from update method for client desktop table notes");
+	        	System.out.println("Check1---"+note.getTitle());
+	        	System.out.println("Check2---"+ note.getNote());
+	        	System.out.println("Check3---"+ note.getId());
 	            // set the corresponding param
 	            pstmt.setString(1, note.getTitle());
 	            pstmt.setString(2, note.getNote());
@@ -411,9 +411,7 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
 	public List<Note> read_deleted_records(String logged_user) {
 
 		List<Note> list = new ArrayList<Note>();
-		
-		System.out.println("logged_user--"+ logged_user);
-		
+				
         try
         (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();

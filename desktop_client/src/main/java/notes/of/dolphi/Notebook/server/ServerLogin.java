@@ -21,7 +21,7 @@ public class ServerLogin {
 	public boolean check_if_user_exist(String email, String password) throws ClassNotFoundException, IOException {
 		
 				//open socket 
-				Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+				Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 				System.out.println("Connected");
 				//...
 				
@@ -31,7 +31,7 @@ public class ServerLogin {
 				//...
 				
 				//execute method
-				String logged_user = Cashe.getLogged_user();
+				String logged_user = email;
 				
 				User user = new User();
 				user.setEmail(logged_user);
@@ -63,7 +63,7 @@ public class ServerLogin {
 		
 
 		//open socket 
-		Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
+		Socket socket = new Socket(Constants.getIpHost(), Constants.getPort());
 		System.out.println("Connected");
 		//...
 		

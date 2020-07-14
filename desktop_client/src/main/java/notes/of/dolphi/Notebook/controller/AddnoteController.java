@@ -49,12 +49,10 @@ public class AddnoteController implements Initializable {
 	
 	public void create_new_note(ActionEvent event) throws SQLException
 	{
-		Note model = Note.builder()
-					.withDate_of_note(new Date().toString())
-					.withNote(note.getText())
-					.withTitle(title.getText())
-					.build();
-
+		Note model = new Note();
+		model.setDate_of_note(new Date().toString());
+		model.setNote(note.getText());
+		model.setTitle(title.getText());
 		
 		ServerDiary server = new ServerDiary();
 		String result_of_process_create_note = "";

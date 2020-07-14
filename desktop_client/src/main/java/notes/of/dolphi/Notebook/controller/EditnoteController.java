@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import com.example.notes_of_dolphi.model.Cashe;
 import com.example.notes_of_dolphi.model.Note;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -23,16 +24,15 @@ public class EditnoteController implements Initializable {
 	@FXML private JFXTextArea note;
 	@FXML private Label date_of_create_of_note;
 	@FXML private int passed_id_from_page_all_notes;
-	
-	public void init_id_from_page_all_notes(int id)
+
+	public void init_id(int id)
 	{
 		this.passed_id_from_page_all_notes = id;
 	}
 	
-	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		DateFormat date_format = new DateFormat();
 		
 		ServerDiary server = new ServerDiary();;
@@ -50,17 +50,16 @@ public class EditnoteController implements Initializable {
 		this.title.setText(note.getTitle());
 		this.note.setText(note.getNote());
 		this.date_of_create_of_note.setText(date_format.get_date_in_proper_format(note.getDate_of_note()));
-
+		
 	}
 	
 	public void save_edited_note(ActionEvent event) throws ClassNotFoundException, IOException
 	{
-		Note note = Note.builder()
-								  .withId(this.passed_id_from_page_all_notes)
-								  .withTitle(this.title.getText())
-								  .withNote(this.note.getText())
-								  .build();
-								  
+		Note note = new Note();
+		note.setId(this.passed_id_from_page_all_notes);
+		note.setTitle(this.title.getText());
+		note.setNote(this.note.getText());
+		
 		ServerDiary server = new ServerDiary();
 		server.update(note);
 		

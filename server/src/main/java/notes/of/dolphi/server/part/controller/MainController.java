@@ -30,16 +30,13 @@ public class MainController extends Thread {
 			message = GetterOforders.get_request_from_client(socket);
 			ExecutorOforders.execute_order_from_client(socket, message);
 		} catch (ClassNotFoundException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			System.out.println("Error---"+e);
 		} catch (IOException e) {
-			System.out.println(e);
-			e.printStackTrace();
+			System.out.println("Error---"+e);
 		}
 		//...		
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
-	 		System.out.println(e);
+			System.out.println("Error---"+e);
 		}
 	}
 

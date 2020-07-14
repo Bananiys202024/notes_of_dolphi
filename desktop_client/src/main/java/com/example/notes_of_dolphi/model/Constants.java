@@ -1,14 +1,15 @@
-package com.example.notes_of_dolphi.model;
+ package com.example.notes_of_dolphi.model;
 
 public class Constants {
 
-	final static int PORT = 2870;
+	final static int PORT = 2879;
 	final static String ip_host = "localhost";
 	
-	public static int getPORT() {
+	public static int getPort() {
 		return PORT;
 	}
-	public static String getIp_host() {
+	
+	public static String getIpHost() {
 		return ip_host;
 	}
 	

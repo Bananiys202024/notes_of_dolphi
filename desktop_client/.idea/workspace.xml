@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6559e6e4-9522-4bfd-8492-1011e98b56d3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../android_client/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/libs/sqlite-jdbc-3.30.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/androidTest/java/com/example/notes_of_dolphi/ExampleInstrumentedTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/LoginActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/Validators/LogInValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/adapter/DraftAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/adapter/NoteAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/AddDraftActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/AddNoteActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/ChatFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/DraftTabFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/MainMenuActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/MainMenuFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/MessageFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/ProfileFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/RegistrationActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/StatisticFragment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/UpdateNoteActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/controllers/showPageAddDraft.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/crud/DiaryCRUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/crud/DraftCRUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/crud/JDBC_initializing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/crud/UsersCRUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/CRUD_operations/AddDraftListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/CRUD_operations/AddNoteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/CRUD_operations/UpdateNoteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/LoginListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/RegistrationListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/go_to_next_activity_page_listeners/showPageAddNoteListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/listeners/go_to_next_activity_page_listeners/showPageRegistrationListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/model/Cashe.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/model/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/model/Draft.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/model/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/model/Note.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/DiaryCRUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/DraftCRUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/UsersCRUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/diary/Create.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/diary/Delete.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/diary/Read.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/diary/ReadAll.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/diary/Update.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/draft/Read.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/users/Create.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/users/Read.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/crud/asyncTask/users/ReadAll.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/SocketForTableDraft.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/Synchronise.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/GetDatabaseFromServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/SendResponseToServerAboutSuccessOperationOfSynchronizationOfLocalDatabaseWithServerDatabase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/SocketCheckConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/SocketForTableNotes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/SocketForTableUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/SynchDeletedRecordsSocket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/SynchronizeLocalDatabaseWithServerDatabaseAsyncTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/TotalSynchronization/SocketForTableDraftTotalSynch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/TotalSynchronization/SocketForTableNotesTotalSynch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/server/synchronize/asyncTask/TotalSynchronization/SocketForTableUserTotalSynch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/util/FormatDate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/util/Generators.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/util/Sorting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/java/com/example/notes_of_dolphi/util/Statistic.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_chat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_email.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_favorite.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_fire.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_message.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_search.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_send.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_share.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_statistic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/ic_sync.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/icon.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/r1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/r2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/r3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/drawable/side_menu_image.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_add_draft.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_add_note.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_login.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_main_drawer.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_registration.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_statistic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/activity_update_note.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/content_add_draft.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/content_add_note.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/content_login.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/content_registration.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/content_statistic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/content_update_note.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/example_of_layout_for_note_of_diary.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/fragment_chat.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/fragment_draft.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/fragment_message.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/fragment_profile.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/fragment_statics.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/main_menu_activity.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/more_menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/layout/nav_header.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/menu/drawer_menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/menu/menu_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/values/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/app/src/test/java/com/example/notes_of_dolphi/ExampleUnitTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../android_client/settings.gradle" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="640" />
+    <option name="width" value="640" />
+    <option name="height" value="1052" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="desktop_client" type="b2602c69:ProjectViewProjectNode" />
+              <item name="desktop_client" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../android_client" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6559e6e4-9522-4bfd-8492-1011e98b56d3" name="Default Changelist" comment="" />
+      <created>1594727565069</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594727565069</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="640" y="0" width="640" height="1052" extended-state="0" />
+    <layout>
+      <window_info id="Captures" order="0" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.31484503" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Designer" order="4" />
+      <window_info id="Resources Explorer" order="5" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
+      <window_info anchor="bottom" id="TODO" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Theme Preview" order="1" />
+      <window_info anchor="right" id="Palette&#9;" order="2" />
+    </layout>
+  </component>
+</project>

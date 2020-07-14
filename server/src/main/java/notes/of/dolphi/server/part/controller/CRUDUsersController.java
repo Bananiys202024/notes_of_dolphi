@@ -97,7 +97,6 @@ public class CRUDUsersController {
 		}
 		}
 		//...
-		System.out.println("key point");
 		
 		//get all notes from server
 		List<User> result = users_crud.read_not_synchronized_records();
@@ -139,20 +138,11 @@ public class CRUDUsersController {
 		}
 		
 		//...
-		System.out.println("key point");
 		
 		//get all notes from server
 		List<Note> result = diary_crud.read_not_synchronized_and_not_deleted_records(logged_user);
 		diary_crud.change_column_synchronized_with_android_to_true(result);
 			
-		//We can delete this part
-		System.out.println("Result from server--That one mark---");
-		for(Note note: result)
-		{
-			System.out.println("Notes-----"+note.getDate_of_note());;
-		}
-		System.out.println("Finish result from server---That one mark---");
-		//...
 		
 		//send request from server
 		System.out.println("sending resources...");
@@ -246,11 +236,6 @@ public class CRUDUsersController {
 		System.out.println("sending resources...");
 		object_output_stream.writeObject(result);
 		System.out.println("Finish process...");
-		//...
-		
-
-		
+		//...	
 	}
-
-
 }

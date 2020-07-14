@@ -29,6 +29,7 @@ public class UsersCRUD {
         }
         return conn;
     }
+
 	
 	public Boolean create_user(User user) throws SQLException {
 	
@@ -72,9 +73,7 @@ public class UsersCRUD {
 
 
 	public boolean check_user(String email, String password) throws SQLException {
-		
-		System.out.println("Email---"+email+"---"+password+"---Password");
-		
+				
         try
         (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();

@@ -4,18 +4,13 @@ import java.io.Serializable;
 
 public class User implements Serializable  {
 
-    private String phone;
+    private int id;
     private String username;
     private String password;
     private String email;
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    private String permission;
+    private Boolean synchronized_server;
+    private Boolean deleted;
 
     public String getUsername() {
         return username;
@@ -39,6 +34,38 @@ public class User implements Serializable  {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
+    public Boolean getSynchronized_server() {
+        return synchronized_server;
+    }
+
+    public void setSynchronized_server(Boolean synchronized_server) {
+        this.synchronized_server = synchronized_server;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

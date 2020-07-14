@@ -2,7 +2,7 @@
 
 public class Constants {
 
-	final static int PORT = 2870;
+	final static int PORT = 2879;
 	final static String ip_host = "localhost";
 	
 	public static int getPort() {

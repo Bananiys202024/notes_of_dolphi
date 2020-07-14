@@ -9,6 +9,8 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.example.notes_of_dolphi.model.Cashe;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -112,10 +114,10 @@ public void go_to_edit_page(ActionEvent event , int id) throws IOException {
 		// get screensize of monitor
 	    Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
 	    //...
-
+	    
 	    EditnoteController edit_controller = new EditnoteController();
-	    edit_controller.init_id_from_page_all_notes(id);
-
+	    edit_controller.init_id(id);
+	    
 	    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(main_path+"Editnote.fxml"));
 	    
 	    loader.setController(edit_controller);

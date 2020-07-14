@@ -278,9 +278,7 @@ public List<Draft> read_not_synchronized_and_not_deleted_records(String logged_u
 	{
 	
 		List<Draft> list = new ArrayList<Draft>();
-		
-		System.out.println("logged_user--"+ logged_user);
-		
+				
         try
         (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
@@ -329,9 +327,7 @@ public List<Draft> read_not_synchronized_and_not_deleted_records(String logged_u
             pstmt.setInt(1, id);
             // execute the delete statement
             pstmt.executeUpdate();
- 
-            System.out.println("Remove---"+id);
-            
+             
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -425,13 +421,11 @@ public List<Draft> read_not_synchronized_and_not_deleted_records(String logged_u
 
 	public void put_mark_on_deleted_records(List<Draft> list_all_drafts) {
 		
-		System.out.println("Starting checking----");
 		if(list_all_drafts != null)
 		for(Draft model : list_all_drafts)
 		{
 			
 		Draft draft = read_by_date_of_add(model.getDate_of_note());
-		System.out.println("Tut mir leid---"+ model.getDate_of_note());
      
 		try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(update_deleted_by_date_of_add)) {

@@ -9,7 +9,8 @@ public class DateFormat {
 
      public String get_date_in_proper_format(String date_of_note){
 		
-		
+		if(date_of_note != null)
+		{
 		try
 		{
 		SimpleDateFormat sdf = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.ENGLISH);
@@ -26,6 +27,7 @@ public class DateFormat {
 		{
 			System.out.println(e);
 		}
+		}//end if
 		return "";
 		
 	}

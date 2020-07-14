@@ -39,8 +39,6 @@ public class ViewCreator {
 		ColumnConstraints col4 = new ColumnConstraints();
 		col4.setPercentWidth(5);
 
-		
-		
 		//remove all from gridPane
 		while(inside_grid_pane.getRowConstraints().size()>0)
 		{
@@ -83,6 +81,7 @@ public class ViewCreator {
 
 		button_edit.setOnAction((event)-> {
 			try {
+				System.out.println("ID_______"+note.getId());
 				AllnotesController.edit_note(event, note.getId());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

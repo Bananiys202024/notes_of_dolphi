@@ -65,7 +65,6 @@ public class CRUDdiaryController {
 		Note notes = crud_diary.read_by_id(logged_user, id);
 		//...
 		
-		
 		//send request from server
 		System.out.println("sending resources...");
 		object_output_stream.writeObject(notes);

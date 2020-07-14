@@ -47,10 +47,7 @@ public class Synchronization {
 		message_model.setList_all_drafts(list_all_draft);
 		////...
 		
-		System.out.println("Sending information----list_all_notes-----"+list_all_notes);
-		System.out.println("Sending information----list_all_drafts-----"+list_all_draft);
-		System.out.println("Sending information----list_all_users-----"+list_all_users);
-		
+
 		//send request from server
 		System.out.println("sending resources...");
 		object_output_stream.writeObject(message_model);

@@ -73,7 +73,6 @@ public class CRUDDraftController {
 		UsersCRUD user_crud = new UsersCRUD();
 		user_crud.change_column_synchronized_with_android_to_true(message.getList_all_users());
 		//...
-		System.out.println("key point");
 		
 		//get all notes from server
 		List<User> result = user_crud.read_not_synchronized_records();
@@ -101,7 +100,6 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 		ObjectOutputStream object_output_stream = new ObjectOutputStream(outputStream);
 		//...
 		
-		
 		//save drafts in database
 		List<Draft> list = message.getList_all_drafts();
 		String logged_user = message.getUser().getEmail();
@@ -115,10 +113,8 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 		}
 		//
 		
-		System.out.println("key point draft synchronization");
 		List<Draft> result = draft_crud.read_not_synchronized_and_not_deleted_records(message.getUser().getEmail());
 		
-		System.out.println("result--draft----KEY---POINT---"+result.size());
 		//send request from server
 		System.out.println("sending resources...");
 		object_output_stream.writeObject(result);
@@ -144,7 +140,6 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 		CRUDdiary diary_crud = new CRUDdiary();
 		diary_crud.change_column_synchronized_with_android_to_true(message.getList_all_notes());
 		//...
-		System.out.println("key point");
 		
 		//get all notes from server
 		String logged_user = message.getUser().getEmail();
@@ -186,8 +181,6 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 	}
 
 	public static void create_note(Socket socket, Message message) throws IOException, SQLException {
-		
-
 				//init database
 				System.out.println("Initialize database...");
 				JDBC_initializing jdbc_init = new JDBC_initializing();
@@ -275,8 +268,6 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 
 	public static void update_note(Socket socket, Message message) throws IOException {
 	
-
-
 		//init database
 		System.out.println("Initialize database...");
 		JDBC_initializing jdbc_init = new JDBC_initializing();
@@ -322,7 +313,6 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 		
 		List<Draft> result = draft_crud.read_all(message.getUser().getEmail());
 		
-		System.out.println("result--draft----KEY---POINT---"+result.size());
 		//send request from server
 		System.out.println("sending resources...");
 		object_output_stream.writeObject(result);
