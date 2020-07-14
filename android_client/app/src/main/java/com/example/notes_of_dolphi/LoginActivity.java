@@ -44,27 +44,6 @@ public class LoginActivity extends AppCompatActivity {
         JDBC_initializing jdbc_initializing = new JDBC_initializing();
         jdbc_initializing.create_tables_if_not_exist(mDatabase);
 
-
-        /*
-       //for offline testing
-        User user = new User();
-        user.setEmail("Banan");
-        user.setSynchronized_server(false);
-        user.setUsername("Banan");
-        user.setPassword("Banan");
-        user.setDeleted(false);
-        user.setPermission("PEASANT");
-
-        UsersCRUD users_crud = new UsersCRUD();
-        try {
-            users_crud.create(user, mDatabase);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-       //...
-
-        */
-
         //opening the database
         email_login = (EditText) findViewById(R.id.email_login);
         password_login = (EditText) findViewById(R.id.password_login);
@@ -79,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
             boolean connection_with_server = synchronize.check_connection_with_server();
 
-            System.out.println("Result---"+ connection_with_server);
             if(connection_with_server)
             {
                 synchronize.synchronise(mDatabase, false, false, true);
@@ -92,18 +70,15 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         } catch (ExecutionException e) {
-            e.printStackTrace();
-            System.out.println("---Error---"+e);
+            System.out.println("Error----"+e);
         } catch (InterruptedException e) {
-            e.printStackTrace();
-            System.out.println("---Error---"+e);
+            System.out.println("Error----"+e);
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("---Error---"+e);
+            System.out.println("Error----"+e);
         }
         catch(Exception e)
         {
-            System.out.println("Error------"+e);
+            System.out.println("Error----"+e);
         }
 
 

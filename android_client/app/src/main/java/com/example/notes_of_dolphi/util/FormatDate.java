@@ -18,8 +18,6 @@ public class FormatDate {
 
             Date date = sdf.parse(joining_date);
 
-            System.out.println("HERE: date" + date);
-
             SimpleDateFormat sdf_new = new SimpleDateFormat("dd-MMM yyyy");
 
             return sdf_new.format(date).replace("-", " ");
@@ -36,9 +34,9 @@ public class FormatDate {
             }
             catch(Exception ex)
             {
-                System.out.println(e);
+                System.out.println("Error----"+e);
             }
-            System.out.println(e);
+            System.out.println("Error----"+e);
         }
         return joining_date;
     }

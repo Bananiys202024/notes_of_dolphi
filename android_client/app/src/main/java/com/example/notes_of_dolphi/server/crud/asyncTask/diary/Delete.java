@@ -61,9 +61,9 @@ public class Delete extends AsyncTask<Integer, Void, Boolean> {
 
         } catch (IOException e) {
          System.out.println("Error---"+e);
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         }
 
         return false;

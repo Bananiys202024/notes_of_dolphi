@@ -32,9 +32,6 @@ public class AddNoteListener  implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-
-        System.out.println("Start add_note listener");
-
         this.note = (EditText) v.getRootView().findViewById(R.id.note);
         this.title = (EditText) v.getRootView().findViewById(R.id.title);
 
@@ -53,8 +50,7 @@ public class AddNoteListener  implements View.OnClickListener {
         try {
             result = diary_crud.create(note_model, mDatabase);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("----Error from save "+e);
+            System.out.println("Error---"+e);
         }
 
         if(result)
@@ -68,8 +64,6 @@ public class AddNoteListener  implements View.OnClickListener {
 
         Intent intent = new Intent(v.getContext(), MainMenuActivity.class);
         v.getRootView().getContext().startActivity(intent);
-
-        System.out.println("End add_note listener");
 
     }
 }

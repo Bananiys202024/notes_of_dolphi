@@ -105,7 +105,6 @@ public class DraftAdapter  extends ArrayAdapter<Draft> {
                 Bundle mBundle = new Bundle();
                 Intent intent = new Intent(mCtx, MainMenuActivity.class);
 
-
                 mBundle.putString("current_page","draft_tab");
                 intent.putExtras(mBundle);
                 mCtx.startActivity(intent);

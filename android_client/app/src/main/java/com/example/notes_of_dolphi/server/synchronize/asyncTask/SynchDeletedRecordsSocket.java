@@ -51,16 +51,11 @@ public class SynchDeletedRecordsSocket extends AsyncTask<Message, Void, Message>
             return result;
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         }
 
         return null;

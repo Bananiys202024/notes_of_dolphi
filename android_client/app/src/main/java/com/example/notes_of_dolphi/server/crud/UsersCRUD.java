@@ -35,11 +35,8 @@ public class UsersCRUD {
 
     //Better to say: check user
     public List<User> read_all_users(User user) throws ExecutionException, InterruptedException {
-        System.out.println("Did start 2");
 
         ReadAll asynch_task_read = new ReadAll();
-        System.out.println("Did start 2..5");
-
         return asynch_task_read.execute(user).get();
     }
 

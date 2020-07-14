@@ -34,8 +34,6 @@ public class AddDraftListener implements View.OnClickListener  {
     @Override
     public void onClick(View v) {
 
-
-        System.out.println("Check warning wefewfewv234321");
         this.draft = (EditText) v.getRootView().findViewById(R.id.draft);
         this.title = (EditText) v.getRootView().findViewById(R.id.title);
 
@@ -49,16 +47,12 @@ public class AddDraftListener implements View.OnClickListener  {
         draft_model.setNote(draft_string);
         draft_model.setOwner(Cashe.getLogged_user());
 
-        System.out.println("new Date------"+ new Date());
-        System.out.println();
-
         boolean result = false;
 
         try {
             result = draft_crud.create(draft_model, mDatabase);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("----Error from save "+e);
+            System.out.println("Error---"+e);
         }
 
         if(result)

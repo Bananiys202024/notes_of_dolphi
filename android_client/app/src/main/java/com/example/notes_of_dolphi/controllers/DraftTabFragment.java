@@ -60,25 +60,18 @@ public class DraftTabFragment extends Fragment {
         DraftCRUD draft_crud = new DraftCRUD();
         List<Draft> list = null;
         list = draft_crud.read(mDatabase);
-/*
 
-        Sorting sorting = new Sorting();
-        list = sorting.sort_list_by_date(list);
-*/
-        System.out.println("fewfewfewfewf123-----"+list);
         if(list != null) {
             Collections.reverse(list);
             try {
                 this.list_view_notes_for_draft_tab = Generators.generate_list_of_draft(list);
             } catch (ParseException e) {
-                e.printStackTrace();
-                System.out.println("Check---"+e);
+                System.out.println("Error---"+e);
             }
 
             //creating the adapter object
             this.draft_adapter = new DraftAdapter(root.getContext(), R.layout.example_of_layout_for_note_of_diary , list_view_notes_for_draft_tab, mDatabase);
 
-            System.out.println("adapter1----"+this.draft_adapter);
             //adding the adapter to listview
             listViewNotesForDraftTab.setAdapter(draft_adapter);
         }

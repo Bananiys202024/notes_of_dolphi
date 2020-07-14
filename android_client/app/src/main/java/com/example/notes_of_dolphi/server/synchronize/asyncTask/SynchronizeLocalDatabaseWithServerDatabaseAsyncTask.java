@@ -28,25 +28,13 @@ public class SynchronizeLocalDatabaseWithServerDatabaseAsyncTask extends AsyncTa
 
         List<User> filtered_list = new ArrayList<>();
 
-System.out.println("Information from synchronization did");
-
         //filter lists, check if lists have not synchronized notes;
         if(server_list_of_all_users.size()>0) {
             for (User e : server_list_of_all_users) {
-                    System.out.println("Check did");
                 if (!e.getSynchronized_server()) {
                     filtered_list.add(e);
                 }
             }
-        }
-
-        System.out.println("finally sycnrhonization--"+ filtered_list);
-
-        for(User us :filtered_list)
-        {
-            System.out.println(us.getEmail());
-            System.out.println(us.getPassword());
-
         }
 
         return filtered_list;

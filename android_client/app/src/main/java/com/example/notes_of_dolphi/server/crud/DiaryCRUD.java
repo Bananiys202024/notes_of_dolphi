@@ -54,14 +54,6 @@ public class DiaryCRUD {
 	public int count_records() throws ClassNotFoundException, ExecutionException, InterruptedException, IOException {
 		List<Note> list = read_all();
 
-		System.out.println("All list---");
-		for(Note note : list)
-		{
-			System.out.println(note.getDate_of_note());
-		}
-		System.out.println("End checking list");
-
-
 		if(list != null)
 			return list.size();
 

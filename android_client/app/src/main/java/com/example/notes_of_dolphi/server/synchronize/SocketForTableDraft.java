@@ -28,15 +28,11 @@ class SocketForTableDraft extends AsyncTask<List<Draft>, Void, List<Draft>> {
 
         try
         {
-            System.out.println("---Did start---1wefewf");
-
             Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
 
             //send request
             OutputStream outputStream = socket.getOutputStream();
             ObjectOutputStream object_output_stream = new ObjectOutputStream(outputStream);
-
-            System.out.println("---Did start---1121212wefwfwefwefewf");
 
             String logged_user = Cashe.getLogged_user();
 
@@ -48,20 +44,10 @@ class SocketForTableDraft extends AsyncTask<List<Draft>, Void, List<Draft>> {
             message.setList_all_drafts(lists[0]);
             message.setUser(user);
 
-            System.out.println("Checkingyuwefhuwefeuwf---"+lists[0]);
             List<Message> request = new ArrayList();
             request.add(message);
             object_output_stream.writeObject(request);
             //..
-
-            System.out.println("---Did start---checking for table notes----");
-            if(message.getList_all_drafts() != null)
-            for(Draft draft : message.getList_all_drafts())
-            {
-                System.out.println(draft.getDate_of_note());
-            }
-
-            System.out.println("---Did start---wefwefewew");
 
             //get response
             InputStream inputStream = socket.getInputStream();
@@ -70,21 +56,14 @@ class SocketForTableDraft extends AsyncTask<List<Draft>, Void, List<Draft>> {
             //add alert, how much notes was changed;
             List<Draft> result = (List<Draft>) object_input_stream.readObject();
 
-            System.out.println("---Did start-wefwef--1");
-
             return result;
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         }
 
         return null;

@@ -62,7 +62,6 @@ public class UsersCRUD {
 
         if(cursor.moveToFirst()) {
             do {
-                System.out.println("Form inside cursor did read all notes");
 
                 Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
                 Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
@@ -84,12 +83,10 @@ public class UsersCRUD {
 
             cursor.close();
 
-            System.out.println("Data fo all notes of user------"+ all_users_list);
 
             return all_users_list;
         }
 
-        System.out.println("Empty users crud fewfewfew/,mp");
         cursor.close();
 
         return null;
@@ -99,27 +96,16 @@ public class UsersCRUD {
 	//read
 	public boolean login(User user, SQLiteDatabase mDatabase) throws SQLException {
 
-        System.out.println("login---");
 		String email = user.getEmail();
 		String password = user.getPassword();
 
-		System.out.println(email+"----"+password+"-----Did");
         Cursor cursor = mDatabase.rawQuery(read_sql, null);
-
-
-        System.out.println("-----List of all notes------did");
-        System.out.println(read(mDatabase));
-        System.out.println("-----finish----");
 
         if(cursor.moveToFirst()) {
             do {
 
                 String email_from_database = cursor.getString(cursor.getColumnIndex("email"));
                 String password_from_database = cursor.getString(cursor.getColumnIndex("password"));
-                System.out.println("llooooop");
-                System.out.println(email_from_database);
-                System.out.println(password_from_database);
-                System.out.println("llooop end did");
 
                 if (email_from_database.equals(email) && password_from_database.equals(password)) {
                     cursor.close();

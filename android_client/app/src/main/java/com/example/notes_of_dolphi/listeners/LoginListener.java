@@ -46,12 +46,10 @@ public class LoginListener implements View.OnClickListener {
 
         UsersCRUD users_server = new UsersCRUD();
         boolean does_it_okay_for_user = false;
-        System.out.println("Checking-----"+user.getEmail()+"0-00--0-0-0-0---"+user.getPassword());
         try {
             does_it_okay_for_user = users_server.login(user, mDatabase);
         } catch (SQLException e) {
             System.out.println("Error---"+e);
-            e.printStackTrace();
         }
 
         if(does_it_okay_for_user)
@@ -59,7 +57,6 @@ public class LoginListener implements View.OnClickListener {
             String logged_user = this.email_login.getText().toString();
             Cashe.setLogged_user(logged_user);
             intent = new Intent(v.getContext(), MainMenuActivity.class);
-            System.out.println("We are going on page MainActivity----");
             v.getContext().startActivity(intent);
         }
         else

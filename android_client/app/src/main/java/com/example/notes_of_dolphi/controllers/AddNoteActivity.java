@@ -30,8 +30,6 @@ public class AddNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        System.out.println("Start add_note activity");
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_note);
         Toolbar toolbar = findViewById(R.id.toolbar);

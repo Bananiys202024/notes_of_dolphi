@@ -18,8 +18,6 @@ public class ReadAll extends AsyncTask<User, Void, List<User>> {
     @Override
     protected List<User> doInBackground(User... users) {
 
-        System.out.println("Did start 3");
-
         User model_user = new User();
 
         for(User note : users)
@@ -27,11 +25,8 @@ public class ReadAll extends AsyncTask<User, Void, List<User>> {
             model_user = note;
         }
 
-        System.out.println("Did start 4");
-
         try {
             Socket socket = new Socket(Constants.getIp_host(), Constants.getPORT());
-            System.out.println("Did open--1");
 
             //send request
             OutputStream outputStream = socket.getOutputStream();
@@ -40,13 +35,11 @@ public class ReadAll extends AsyncTask<User, Void, List<User>> {
             Message message = new Message();
             message.setMessage("read_all_users");
             message.setUser(model_user);
-            System.out.println("Did open--2");
 
             List<Message> example_class = new ArrayList();
             example_class.add(message);
             object_output_stream.writeObject(example_class);
             //..
-            System.out.println("Did open--3");
 
             //get response
             InputStream inputStream = socket.getInputStream();
@@ -54,13 +47,12 @@ public class ReadAll extends AsyncTask<User, Void, List<User>> {
 
             List<User> result = (List<User>) object_input_stream.readObject();
             //...
-            System.out.println("Did open--4");
 
             return result;
         }
         catch(Exception e)
         {
-            System.out.println("Error--"+e);
+            System.out.println("Error---"+e);
         }
 
         return null;

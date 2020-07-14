@@ -62,9 +62,9 @@ public class Update extends AsyncTask<Note, Void, Boolean> {
         }
         catch(IOException e)
         {
-            System.out.println("Error----"+e);
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         }
 
         return false;

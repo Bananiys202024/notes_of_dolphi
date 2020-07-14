@@ -52,10 +52,6 @@ public class StatisticFragment  extends Fragment {
         this.remote_user = root.findViewById(R.id.remote_user);
         this.remote_note = root.findViewById(R.id.remote_note);
 
-
-        System.out.println("Check-3--g");
-
-
         UsersCRUD user_crud = new UsersCRUD();
         DraftCRUD draft_crud = new DraftCRUD();
         DiaryCRUD diary_crud = new DiaryCRUD();
@@ -63,21 +59,11 @@ public class StatisticFragment  extends Fragment {
         com.example.notes_of_dolphi.server.crud.UsersCRUD server_user_crud = new com.example.notes_of_dolphi.server.crud.UsersCRUD();
         com.example.notes_of_dolphi.server.crud.DraftCRUD server_draft_crud = new com.example.notes_of_dolphi.server.crud.DraftCRUD();
 
-
-        System.out.println("Check-3r--");
-
-
         int number_local_note = diary_crud.count_records(this.mDatabase);
-
-        System.out.println("Check-3-a-");
 
         int number_local_draft = draft_crud.count_records(this.mDatabase);
 
-        System.out.println("Check-3-t-");
-
         int number_local_user = user_crud.counte_records(this.mDatabase);
-
-        System.out.println("Check-3--");
 
         int number_remote_note = 0;
         int number_remote_user = 0;

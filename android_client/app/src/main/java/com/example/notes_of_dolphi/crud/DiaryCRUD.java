@@ -24,21 +24,10 @@ public class DiaryCRUD {
 	private final String update_by_id = "UPDATE notes SET title=?, note=? WHERE id= ?";
 	private final String read_by_date_of_add = "SELECT id, title, note, date_of_add, owner FROM notes WHERE date_of_add=?";
 
-	/*
-
-
-	public DiaryCRUD(@Nullable Context context) {
-		super(context);
-	}
-*/
-
 	public boolean create(Note note, SQLiteDatabase mDatabase)
 	{
 
-
 		String date_of_add = String.valueOf(new Date());
-
-		System.out.println("Result from here:--Checking time of creation-----"+date_of_add);
 
         try {
 			ContentValues values = new ContentValues();
@@ -49,15 +38,13 @@ public class DiaryCRUD {
 			values.put("deleted", false);
 			values.put("synchronized_server", false);
 
-
 			boolean created_successfull = mDatabase.insert("notes", null, values) > 0;
-			System.out.println("result---" + created_successfull);
 
 			return created_successfull;
 
 		} catch(Exception e)
 		{
-			System.out.println("Error- create note---"+e);
+			System.out.println("Error---"+e);
 		}
 
 		return false;
@@ -305,9 +292,7 @@ public class DiaryCRUD {
 
 		Cursor cursor = mDatabase.rawQuery(read_sql, null);
 
-
-		System.out.println("Checking this right here----");
-		if(cursor.moveToFirst()) {
+ 		if(cursor.moveToFirst()) {
 			do {
 				System.out.println(cursor.getString(cursor.getColumnIndex("date_of_add")));
 				count += 1;
@@ -315,9 +300,7 @@ public class DiaryCRUD {
 			} while (cursor.moveToNext());
 
 			cursor.close();
-
-			System.out.println("Finish check");
-			return count;
+ 			return count;
 
 		}
 		cursor.close();
@@ -400,8 +383,6 @@ public class DiaryCRUD {
 		for(Note not : list_all_notes)
 		{
 
-			System.out.println("Checking this right here-----");
-			System.out.println(not.getDate_of_note());
 			Note note = find_record_by_date_of_add(not, mDatabase);
 
 			ContentValues values = new ContentValues();
@@ -422,26 +403,13 @@ public class DiaryCRUD {
 	private Note find_record_by_date_of_add(Note not, SQLiteDatabase mDatabase)
 	{
 
-		List<Note> list_notes = read_all(mDatabase);
-		System.out.println("Start here---0---0--00---0-");
-		for(Note note  : list_notes)
-		{
-			System.out.println("-g-"+note.getDate_of_note()+"-g-");
-		}
-		System.out.println("End here---0-0-----0----0----");
-
 		String read_by_date_of_add = "select * from notes where date_of_add='" + not.getDate_of_note() + "';";
-
-		System.out.println("Looking for date---"+read_by_date_of_add);
-
-		System.out.println("From method --g-"+not.getDate_of_note()+"-g-");
 
 		Note note = new Note();
 		Cursor cursor = mDatabase.rawQuery(read_by_date_of_add, null);
 
 		if(cursor.moveToFirst())
 		{
-			System.out.println("Show connection0-----");
 			Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
 			Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
 
@@ -485,7 +453,7 @@ public class DiaryCRUD {
 
 		} catch(Exception e)
 		{
-			System.out.println("Error- create note---"+e);
+			System.out.println("Error---"+e);
 		}
 
 		return false;
@@ -510,12 +478,11 @@ public class DiaryCRUD {
 
 
 				boolean created_successfull = mDatabase.insert("notes", null, values) > 0;
-				System.out.println("result---" + created_successfull);
 
 				return created_successfull;
 
 			} catch (Exception e) {
-				System.out.println("Error- create note---" + e);
+				System.out.println("Error---"+e);
 			}
 		}
 

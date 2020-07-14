@@ -72,9 +72,6 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
         findViewById(R.id.add_icon).setOnClickListener((View.OnClickListener) new showPageAddNoteListener());
         listViewNotes = (ListView) findViewById(R.id.listViewNotes);
 
-        System.out.println("------find View by Id-----"+findViewById(R.id.add_icon_for_draft_tab));
-        /*findViewById(R.id.add_icon_for_draft_tab).setOnClickListener((View.OnClickListener) new showPageAddDraft());
-*/
         Synchronise synchronize = new Synchronise();
 
         drawer = findViewById(R.id.drawer_layout);
@@ -86,30 +83,13 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        System.out.println("Bundle---"+savedInstanceState);
-
         context = this;
 
-        System.out.println("Old man----"+ savedInstanceState);
-
-/*
-        if(savedInstanceState != null) {
-            current_page = savedInstanceState.getString("current_page");
-        }
-*/
         Intent in = getIntent();
         Bundle content = in.getExtras();
 
-
-
-
-        System.out.println("Check content---"+ content+"--=");
-
-
         this.mDatabase_1 = openOrCreateDatabase(Constants.getDatabaseName(), MODE_PRIVATE, null);
         this.mDatabase_2 = openOrCreateDatabase(Constants.getDatabaseName(), MODE_PRIVATE, null);
-
-
 
         if(savedInstanceState == null)
         {
@@ -119,7 +99,6 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
 
         if(content != null) {
             String current_page = content.getString("current_page");
-            System.out.println("Check content---"+ content+"---check currrent page--"+ current_page);
 
             if (current_page.equals("draft_tab")) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DraftTabFragment(mDatabase_2)).commit();
@@ -141,24 +120,19 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
             }
 
         } catch (ExecutionException e) {
-            System.out.println("---Error---"+e);
-
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         } catch (InterruptedException e) {
-            System.out.println("---Error---"+e);
-
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         }
 
         //this pard of code to async
         try {
             showNoteForNotesTab();
         } catch (ParseException e) {
-            e.printStackTrace();
             System.out.println("Error---"+e);
         }
         //...
@@ -169,15 +143,14 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
         DiaryCRUD diary_crud = new DiaryCRUD();
         List<Note> list = diary_crud.read_all(mDatabase_2);
 
-        System.out.println("Start right here:::::");
-if(list != null)
+        if(list != null)
         for(Note note : list)
         {
             System.out.println(note.getDate_of_note()+"-----dateOfAdd");
             System.out.println(note.getSynchronized_server()+"-----synch");
             System.out.println(note.getDeleted()+"-----deleted");
         }
-        System.out.println("End right here");
+
         //...
 
     }
@@ -312,8 +285,8 @@ if(list != null)
 
         try {
             Synchronise synchronize = new Synchronise();
-//            synchronize.synchronise_table_notes(mDatabase_1);
-//            synchronize.synchronise_table_draft(mDatabase_1);
+            synchronize.synchronise_table_notes(mDatabase_1);
+            synchronize.synchronise_table_draft(mDatabase_1);
 
             Toast.makeText(this,"database synchronized", Toast.LENGTH_SHORT).show();
         }

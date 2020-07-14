@@ -127,10 +127,8 @@ public class DraftCRUD {
 
         List<Draft> list = new ArrayList<Draft>();
 
-        System.out.println("fwefwfewf31f312425466efwe------"+mDatabase);
-        Cursor cursor = mDatabase.rawQuery(read_sql, null);
-        System.out.println("Checking-----fwefw-fwfwefewfw-efwe--wf-wef");
-        if(cursor.moveToFirst()) {
+         Cursor cursor = mDatabase.rawQuery(read_sql, null);
+         if(cursor.moveToFirst()) {
             do {
 
                 Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
@@ -163,49 +161,6 @@ public class DraftCRUD {
         return null;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-	public DiaryCRUD(@Nullable Context context) {
-		super(context);
-	}
-*/
-
     public boolean create(Draft draft, SQLiteDatabase mDatabase)
     {
 
@@ -221,13 +176,12 @@ public class DraftCRUD {
 
 
             boolean created_successfull = mDatabase.insert("draft", null, values) > 0;
-            System.out.println("result---" + created_successfull);
 
             return created_successfull;
 
         } catch(Exception e)
         {
-            System.out.println("Error- create note---"+e);
+            System.out.println("Error---"+e);
         }
 
         return false;
@@ -237,8 +191,6 @@ public class DraftCRUD {
 
         String logged_user = Cashe.getLogged_user();
         Draft draft = read_by_id(logged_user, drft.getId(), mDatabase);
-
-        System.out.println("DRAFT FOUND BY DATE OF ADD"+draft);
 
         ContentValues values = new ContentValues();
         values.put("note", draft.getNote());
@@ -258,27 +210,8 @@ public class DraftCRUD {
 
         String read_by_id_local = "select * from draft where id =" + id + "";
 
-
-
-
-        System.out.println("GET ALL DRAFT RECORDS---"+id);
-        List<Draft> list_draft = read_all(mDatabase);
-if(list_draft == null)
-{
-    System.out.println("List of draft equal zero");
-}
-else
-{
-    for(Draft draft : list_draft)
-    {
-        System.out.println(draft.getDate_of_note());
-    }
-}
-
         Draft draft = new Draft();
         Cursor cursor = mDatabase.rawQuery(read_by_id_local, null);
-
-
 
         if(cursor.moveToFirst())
         {

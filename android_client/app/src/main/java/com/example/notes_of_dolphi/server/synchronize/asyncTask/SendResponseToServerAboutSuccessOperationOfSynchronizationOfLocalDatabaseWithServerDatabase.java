@@ -49,11 +49,11 @@ public class SendResponseToServerAboutSuccessOperationOfSynchronizationOfLocalDa
             return result;
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         }
 
         return "Something wrong.";

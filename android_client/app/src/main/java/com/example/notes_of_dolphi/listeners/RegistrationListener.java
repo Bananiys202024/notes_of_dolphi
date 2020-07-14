@@ -53,7 +53,7 @@ public class RegistrationListener implements View.OnClickListener {
         try {
             connection_with_server = synchronize.check_connection_with_server();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Error---"+e);
         }
 
 
@@ -67,9 +67,9 @@ public class RegistrationListener implements View.OnClickListener {
                 try {
                     users_server.create(user);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.out.println("Error---"+e);
                 } catch (ExecutionException e) {
-                    e.printStackTrace();
+                    System.out.println("Error---"+e);
                 }
 
                 intent = new Intent(v.getContext(), LoginActivity.class);

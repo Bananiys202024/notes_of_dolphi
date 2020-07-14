@@ -51,22 +51,6 @@ public class Synchronise  {
         List<Draft> draft_list_deleted_records = draft_crud.read_deleted_records(mDatabase);
         List<Note> note_list_deleted_records = diary_crud.read_deleted_records(mDatabase);
 
-        System.out.println("List of deleted files---for table draft-----");
-
-        if(draft_list_deleted_records != null)
-        for(Draft draft : draft_list_deleted_records)
-        {
-            System.out.println(draft.getDate_of_note());
-        }
-
-        System.out.println("List of deleted list for table note;====----");
-
-        if(note_list_deleted_records != null)
-        for(Note note : note_list_deleted_records)
-        {
-            System.out.println(note.getDate_of_note());
-        }
-
         String logged_user = Cashe.getLogged_user();
 
         User user = new User();
@@ -81,19 +65,6 @@ public class Synchronise  {
 
         SynchDeletedRecordsSocket socket_deleted_records = new SynchDeletedRecordsSocket();
         Message msg = socket_deleted_records.execute(message).get();
-
-
-        //We can delete this part
-        List<Note> list_notes = msg.getList_all_notes();
-        System.out.println("We got from server----");
-        for(Note note : list_notes)
-        {
-            System.out.println("Plus one---"+note.getDate_of_note());
-
-        }
-        System.out.println("We end got from server");
-
-        //...
 
         //save deleted records from server
         //set to column deleted true
@@ -115,13 +86,9 @@ public class Synchronise  {
         users_crud.put_mark_on_synchronized_users(local_list_all_not_synchronized_users, mDatabase);
         //..
 
-        System.out.println("---Not synchronized local list----"+ local_list_all_not_synchronized_users);
-
         //finish server part
         SocketForTableUser socket_user = new SocketForTableUser();
         List<User> list_from_server = (List<User>) socket_user.execute(local_list_all_not_synchronized_users).get();
-
-        System.out.println("---Not synchronized server list----"+ local_list_all_not_synchronized_users);
 
         for(User user : list_from_server)
         {
@@ -147,7 +114,6 @@ public class Synchronise  {
 
         for(Note note : list_from_server)
         {
-            System.out.println("Fuch, we have some note from server");
             notes_crud.create(note, mDatabase);
         }
         //...
@@ -163,14 +129,6 @@ public class Synchronise  {
             notes_crud.put_mark_on_synchronized_notes(local_list_all_not_synchronized_notes, mDatabase);
         //..
 
-
-        System.out.println("Start here: checking from 22:33-- Checking time of creating of note----");
-
-    if(local_list_all_not_synchronized_notes != null)
-    for(Note note : local_list_all_not_synchronized_notes)
-    {
-        System.out.println(note.getDate_of_note());
-    }
         //finish server part
         SocketForTableNotesTotalSynch socket_notes = new SocketForTableNotesTotalSynch();
         List<Note> list_from_server =  socket_notes.execute(local_list_all_not_synchronized_notes).get();
@@ -195,13 +153,9 @@ public class Synchronise  {
             users_crud.put_mark_on_synchronized_users(local_list_all_not_synchronized_users, mDatabase);
         //..
 
-        System.out.println("---Not synchronized local list----"+ local_list_all_not_synchronized_users);
-
         //finish server part
         SocketForTableUserTotalSynch socket_user = new SocketForTableUserTotalSynch();
         List<User> list_from_server = (List<User>) socket_user.execute(local_list_all_not_synchronized_users).get();
-
-        System.out.println("---Not synchronized server list----"+ local_list_all_not_synchronized_users);
 
         for(User user : list_from_server)
         {
@@ -241,8 +195,6 @@ public class Synchronise  {
         Boolean is_user_table_empty = check_if_table_users_empty(mDatabase);
         Boolean is_draft_table_empty = check_if_table_draft_empty(mDatabase);
         Boolean is_note_table_empty = check_if_table_notes_empty(mDatabase);
-
-            System.out.println("Checking boolean---"+ is_user_table_empty);
 
             if(is_user_table_empty)
             totally_synchronisation_table_user(mDatabase);
@@ -359,10 +311,10 @@ public class Synchronise  {
             isAlive = true;
 
         } catch (SocketTimeoutException exception) {
-            System.out.println("SocketTimeoutException " + hostName + ":" + port + ". " + exception.getMessage());
+            System.out.println("Error--SocketTimeoutException " + hostName + ":" + port + ". " + exception.getMessage());
         } catch (IOException exception) {
             System.out.println(
-                    "IOException - Unable to connect to " + hostName + ":" + port + ". " + exception.getMessage());
+                    "Error---IOException - Unable to connect to " + hostName + ":" + port + ". " + exception.getMessage());
         }
         return isAlive;
     }
@@ -374,13 +326,11 @@ public class Synchronise  {
             SocketCheckConnection check_connection = new SocketCheckConnection();
             boolean result = check_connection.execute().get();
 
-            System.out.println("Result-----"+result);
-
             return result;
         }
         catch(Exception e)
         {
-            System.out.println("---Error---"+e);
+            System.out.println("Error---"+e);
             return false;
         }
 

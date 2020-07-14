@@ -49,16 +49,11 @@ public class SocketForTableUser extends AsyncTask<List<User>, Void, List<User>> 
             return result;
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         }
 
         return null;

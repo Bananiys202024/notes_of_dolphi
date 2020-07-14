@@ -52,7 +52,7 @@ public class Read extends AsyncTask<User, Void, List<Draft>> {
         }
         catch(Exception e)
         {
-            System.out.println("Error--"+e);
+            System.out.println("Error---"+e);
         }
 
         return null;

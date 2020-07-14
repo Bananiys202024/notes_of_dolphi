@@ -45,13 +45,6 @@ public class SocketForTableNotes extends AsyncTask<List<Note>, Void, List<Note>>
             request.add(message);
             object_output_stream.writeObject(request);
             //..
-            System.out.println("---Did start---checking for table notes----");
-
-            if(message.getList_all_users() != null)
-            for(Note note : message.getList_all_notes())
-            {
-                System.out.println(note.getDate_of_note());
-            }
 
             //get response
             InputStream inputStream = socket.getInputStream();
@@ -60,21 +53,14 @@ public class SocketForTableNotes extends AsyncTask<List<Note>, Void, List<Note>>
             //add alert, how much notes was changed;
             List<Note> result = (List<Note>) object_input_stream.readObject();
 
-            System.out.println("---Did start-wefwef--1");
-
             return result;
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         }
 
         return null;

@@ -43,25 +43,14 @@ public class GetDatabaseFromServer extends AsyncTask<Message, Void, Message>
             //add alert, how much notes was changed;
             Message result = (Message) object_input_stream.readObject();
 
-
-            System.out.println("Result ----"+ result);
-            System.out.println("Result ----list_all_drafts-----"+ result.getList_all_drafts());
-            System.out.println("Result ----list_all_notes-----"+ result.getList_all_notes());
-            System.out.println("Result ----list_all_users-----"+ result.getList_all_users());
-
             return result;
 
         } catch (UnknownHostException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
+            System.out.println("Error---"+e);
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("---Error_---"+e);
-
+            System.out.println("Error---"+e);
         }
 
         return null;
