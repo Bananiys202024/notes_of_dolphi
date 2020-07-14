@@ -1,6 +1,6 @@
 # notes_of_dolphi
 
-<h2>Android client part</h2>
+<h2>Desktop client part</h2>
  Simple diary.
 <h2>Frameworks and tools</h2>
 
