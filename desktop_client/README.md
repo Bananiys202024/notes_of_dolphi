@@ -1,5 +1,36 @@
-mvn -offline install <br>
- java -cp target/Notebook-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.dolphi.Main
- 
- 
- mvn -offline install; java -cp target/Notebook-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.dolphi.Main
+# notes_of_dolphi
+
+<h2>Android client part</h2>
+ Simple diary.
+<h2>Frameworks and tools</h2>
+
+<h6>
+    Java&IDE: JDK8 Eclipse<br>
+    Database: sql lite <br>
+    Build Tool: Gradle<br>
+    Linux： Arch Linux<br>
+    Other: ---<br>
+</h6>
+
+<h2>System Features</h2>
+
+<h6>
+    <ul>
+        <li>Online mode</li>
+        <li>CRUD operations</li>
+   </ul>
+
+</h6>
+
+<h2>Tuning project...</h2>
+
+<h6>
+    <ul>
+     <li>Start application:<br>
+     
+     mvn -offline install; java -cp target/Notebook-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.dolphi.Main
+
+   </li>   
+   </ul>
+</h6>
+
