@@ -5,7 +5,7 @@
 <h2>Frameworks and tools</h2>
 
 <h6>
-    Java&IDE: JDK8 Eclipse, Android studio<br>
+    Java&IDE: JDK8, Android studio<br>
     Database: sql lite <br>
     Build Tool: Gradle<br>
     Linux： Arch Linux<br>
