@@ -30,6 +30,9 @@
      
      mvn -offline install; java -cp target/Notebook-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.dolphi.Main
 
+or simple click on desktop file with name "DolphiNotes.desktop" and open as desktop file.
+
+
    </li>   
    </ul>
 </h6>
