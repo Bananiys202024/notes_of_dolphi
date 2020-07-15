@@ -1,7 +1,7 @@
 # notes_of_dolphi
 
 <h2>Desktop client part</h2>
- Simple diary.
+ Simple diary. App designed for arch linux
 <h2>Frameworks and tools</h2>
 
 <h6>
