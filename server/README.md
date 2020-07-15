@@ -20,6 +20,8 @@
      
 	mvn -offline install; java -cp target/server.part-0.0.1-SNAPSHOT-jar-with-dependencies.jar notes.of.dolphi.server.part.Main
 
+or simple click on desktop file with name "notesOfDolphiServer.desktop" and open as desktop file.
+
    </li>   
    </ul>
 </h6>
