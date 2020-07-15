@@ -27,7 +27,7 @@
 
 
 <h2>Screenshots</h2>
-<kbd><img src="screenshots/3.png"></kbd>
-<kbd><img src="screenshots/2.png"></kbd>
-<kbd><img src="screenshots/1.png"></kbd>
+<kbd><img src="screenshots/3.png" height="400" width="200"></kbd>
+<kbd><img src="screenshots/2.png" height="400" width="200"></kbd>
+<kbd><img src="screenshots/1.png" height="400" width="200"></kbd>
 
