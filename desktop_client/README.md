@@ -5,7 +5,7 @@
 <h2>Frameworks and tools</h2>
 
 <h6>
-    Java&IDE: JDK8 Eclipse<br>
+    Java&IDE: JDK8 Eclipse, JavaFX <br>
     Database: sql lite <br>
     Build Tool: maven<br>
     Linux： Arch Linux<br>
