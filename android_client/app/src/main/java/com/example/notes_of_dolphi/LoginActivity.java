@@ -1,12 +1,15 @@
 package com.example.notes_of_dolphi;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.example.notes_of_dolphi.crud.JDBC_initializing;
 import com.example.notes_of_dolphi.crud.UsersCRUD;
 import com.example.notes_of_dolphi.listeners.LoginListener;
+import com.example.notes_of_dolphi.listeners.go_to_next_activity_page_listeners.OfflineRegistrationListener;
 import com.example.notes_of_dolphi.listeners.go_to_next_activity_page_listeners.showPageRegistrationListener;
+import com.example.notes_of_dolphi.model.Cashe;
 import com.example.notes_of_dolphi.model.Constants;
 import com.example.notes_of_dolphi.model.User;
 import com.example.notes_of_dolphi.server.synchronize.Synchronise;
@@ -51,21 +54,22 @@ public class LoginActivity extends AppCompatActivity {
         registration = (Button) findViewById(R.id.registration);
 
         log_in.setOnClickListener((View.OnClickListener) new LoginListener(email_login, password_login, mDatabase));
-        registration.setOnClickListener((View.OnClickListener) new showPageRegistrationListener());
 
         try {
             Synchronise synchronize = new Synchronise();
 
             boolean connection_with_server = synchronize.check_connection_with_server();
 
+            Cashe.setConnection_with_server_for_this_session(connection_with_server);
             if(connection_with_server)
             {
+                registration.setOnClickListener((View.OnClickListener) new showPageRegistrationListener());
                 synchronize.synchronise(mDatabase, false, false, true);
                 synchronize.synchronize_deleted_records(mDatabase);
-
             }
             else
             {
+                registration.setOnClickListener((View.OnClickListener) new OfflineRegistrationListener());
                 Toast.makeText(this, "Not possible to make synchronization because no connection with server", Toast.LENGTH_SHORT);
             }
 

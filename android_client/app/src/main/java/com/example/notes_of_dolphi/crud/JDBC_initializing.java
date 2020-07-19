@@ -13,7 +13,7 @@ public class JDBC_initializing {
 
 	public void create_tables_if_not_exist(SQLiteDatabase mDatabase) {
 
-		drop_tables(mDatabase);
+		//drop_tables(mDatabase);
 
 		create_table_draft_if_note_exist(mDatabase);
 		create_table_notes_if_note_exist(mDatabase);

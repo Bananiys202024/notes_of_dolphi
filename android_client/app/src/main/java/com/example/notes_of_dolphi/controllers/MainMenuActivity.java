@@ -26,6 +26,7 @@ import com.example.notes_of_dolphi.adapter.NoteAdapter;
 import com.example.notes_of_dolphi.crud.DiaryCRUD;
 import com.example.notes_of_dolphi.crud.DraftCRUD;
 import com.example.notes_of_dolphi.listeners.go_to_next_activity_page_listeners.showPageAddNoteListener;
+import com.example.notes_of_dolphi.model.Cashe;
 import com.example.notes_of_dolphi.model.Constants;
 import com.example.notes_of_dolphi.model.Draft;
 import com.example.notes_of_dolphi.model.Note;
@@ -56,6 +57,7 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
     NoteAdapter note_adapter;
     ListView listViewNotes;
     Context context;
+    boolean connection_with_server = Cashe.isConnection_with_server_for_this_session();
 
     SQLiteDatabase mDatabase_1;
     SQLiteDatabase mDatabase_2;
@@ -71,8 +73,6 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
 
         findViewById(R.id.add_icon).setOnClickListener((View.OnClickListener) new showPageAddNoteListener());
         listViewNotes = (ListView) findViewById(R.id.listViewNotes);
-
-        Synchronise synchronize = new Synchronise();
 
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -109,23 +109,16 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
         }
 
         try {
-
-            boolean connection_with_server = synchronize.check_connection_with_server();
-
             if(connection_with_server)
             {
+                Synchronise synchronize = new Synchronise();
                 synchronize.synchronise(mDatabase_1, true, true, false);
-//                synchronize.synchronize_deleted_records(mDatabase_1);
-
             }
-
         } catch (ExecutionException e) {
             System.out.println("Error---"+e);
         } catch (InterruptedException e) {
             System.out.println("Error---"+e);
         } catch (SQLException e) {
-            System.out.println("Error---"+e);
-        } catch (IOException e) {
             System.out.println("Error---"+e);
         }
 
@@ -220,7 +213,6 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
         Synchronise synchronize = new Synchronise();
-        boolean connection_with_server = false;
 
         switch (menuItem.getItemId())
         {
@@ -237,12 +229,6 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
                 break;*/
             case R.id.nav_synch:
 
-                try {
-                    connection_with_server = synchronize.check_connection_with_server();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
                 if(connection_with_server)
                 {
                     synchronization();
@@ -256,16 +242,9 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
 
             case R.id.nav_statistic:
 
-                try {
-                    connection_with_server = synchronize.check_connection_with_server();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
                 if(connection_with_server)
                 {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container , new StatisticFragment(this.mDatabase_2)).commit();
-
                 }
                 else
                 {
@@ -287,6 +266,7 @@ public class MainMenuActivity extends AppCompatActivity implements NavigationVie
             Synchronise synchronize = new Synchronise();
             synchronize.synchronise_table_notes(mDatabase_1);
             synchronize.synchronise_table_draft(mDatabase_1);
+            synchronize.synchronize_deleted_records(mDatabase_1);
 
             Toast.makeText(this,"database synchronized", Toast.LENGTH_SHORT).show();
         }
