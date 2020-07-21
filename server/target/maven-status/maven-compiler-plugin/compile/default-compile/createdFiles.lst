@@ -3,5 +3,5 @@ notes/of/dolphi/server/part/Main.class
 notes/of/dolphi/server/part/controller/CRUDUsersController.class
 notes/of/dolphi/server/part/crud/UsersCRUD.class
 notes/of/dolphi/server/part/crud/Synchronization.class
-notes/of/dolphi/server/part/crud/DraftCRUD.class
 com/example/notes_of_dolphi/model/Draft.class
+notes/of/dolphi/server/part/crud/DraftCRUD.class
