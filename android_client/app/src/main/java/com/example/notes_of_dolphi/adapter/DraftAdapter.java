@@ -54,7 +54,6 @@ public class DraftAdapter  extends ArrayAdapter<Draft> {
         final Draft draft = draftList.get(position);
         //get by id;
 
-
         TextView textViewTitle = view.findViewById(R.id.textViewTitle);
         TextView textViewNote = view.findViewById(R.id.textViewNote);
         TextView textViewJoiningDate = view.findViewById(R.id.textViewJoiningDate);
@@ -68,13 +67,20 @@ public class DraftAdapter  extends ArrayAdapter<Draft> {
         Button buttonDelete = view.findViewById(R.id.buttonDeleteNote);
         Button buttonEdit = view.findViewById(R.id.buttonEditNote);
 
+        //delete buttonEdit
+        ViewGroup layout = (ViewGroup) buttonEdit.getParent();
+        if(null!=layout)
+            layout.removeView(buttonEdit);
+        //...
+
+
         //adding a clicklistener to button
-        buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateDraft(draft);
-            }
-        });
+//        buttonEdit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                updateDraft(draft);
+//            }
+//        });
 
         //the delete operation
         buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -187,8 +193,8 @@ public class DraftAdapter  extends ArrayAdapter<Draft> {
                 }
                 dialog.dismiss();
 
-                //reload notes from database
 
+                //reload notes from database
                 Bundle mBundle = new Bundle();
                 Intent intent = new Intent(mCtx, MainMenuActivity.class);
 

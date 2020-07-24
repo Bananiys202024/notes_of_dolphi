@@ -42,6 +42,7 @@ class SocketForTableDraft extends AsyncTask<List<Draft>, Void, List<Draft>> {
             Message message = new Message();
             message.setMessage("synchronize_from_android_table_draft");
             message.setList_all_drafts(lists[0]);
+            message.setNote(null);
             message.setUser(user);
 
             List<Message> request = new ArrayList();

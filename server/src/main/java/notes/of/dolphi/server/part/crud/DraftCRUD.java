@@ -15,14 +15,15 @@ import com.example.notes_of_dolphi.model.Note;
 public class DraftCRUD {
 
 
-	private final String read_sql = "SELECT id, title, note , date_of_add, deleted, synchronized_android, owner FROM draft";
-	private final String create_sql = "INSERT INTO draft(title, note, date_of_add, owner) VALUES(?, ?, ?, ?)";
+	private final String read_sql = "SELECT * FROM draft";
+	private final String create_sql = "INSERT INTO draft(synchronized_android, title, note, date_of_add, owner) VALUES(?, ?, ?, ?, ?)";
 	private final String sql = "DELETE FROM draft WHERE id = ?";
 	private final String read_by_id = "SELECT id, title, note , date_of_add, owner FROM draft WHERE id= ?";
 	private final String update_by_id = "UPDATE draft SET title=?, note=? WHERE id= ?";
 	private final String update_by_id_for_synchronization = "UPDATE draft SET synchronized_android= ? WHERE id= ?";
 	private final String read_by_date_of_add = "SELECT id, title, note , date_of_add, deleted, synchronized_android, owner FROM draft WHERE date_of_add = ?";
 	private final String update_deleted_by_date_of_add = "UPDATE draft SET deleted=true WHERE date_of_add=?";
+	private final String update_edited_by_id = "UPDATE draft SET edited_record=?, title=?, note=? , date_of_add=?, deleted=?, synchronized_android=?, owner=? WHERE id= ?";
 	
 	private Connection connect() {
         // SQLite connection string
@@ -125,10 +126,11 @@ public class DraftCRUD {
 		 Connection conn = this.connect();
 	     PreparedStatement pstmt = conn.prepareStatement(create_sql);
 	     
-	     pstmt.setString(1, draft.getTitle());
-	     pstmt.setString(2, draft.getNote());
-	     pstmt.setString(3, draft.getDate_of_note());
-	     pstmt.setString(4, logged_user);
+	     pstmt.setBoolean(1, true);
+	     pstmt.setString(2, draft.getTitle());
+	     pstmt.setString(3, draft.getNote());
+	     pstmt.setString(4, draft.getDate_of_note());
+	     pstmt.setString(5, logged_user);
 	     
 	     pstmt.execute();
 	     
@@ -272,6 +274,45 @@ public List<Draft> read_not_synchronized_and_not_deleted_records(String logged_u
 	
 	}
 
+	public List<Draft> absolutely_read() 
+	{
+	
+		List<Draft> list = new ArrayList<Draft>();
+				
+        try
+        (Connection conn = this.connect();
+        Statement stmt  = conn.createStatement();
+        ResultSet rs    = stmt.executeQuery(read_sql))
+        {
+        
+        while (rs.next()) {
+        
+        	boolean deleted = rs.getInt("deleted") != 0;	
+        	boolean edited_record = rs.getInt("edited_record") != 0;
+        	
+			Draft draft = new Draft();
+			draft.setId(rs.getInt("id"));
+			draft.setDate_of_note(rs.getString("date_of_add"));
+			draft.setNote(rs.getString("note"));
+			draft.setTitle(rs.getString("title"));
+			draft.setDeleted(deleted);
+			draft.setOwner(rs.getString("owner"));
+			draft.setSynchronized_server(rs.getInt("synchronized_android") != 0);
+        	draft.setEdited_record(edited_record);
+			
+        	list.add(draft);
+        
+        }
+      
+        }
+        catch(SQLException e )
+        {
+        	System.out.println(e);       
+        }
+        
+		return null;
+	}
+	
 	
 	
 	public List<Draft> read(String logged_user) 
@@ -400,13 +441,15 @@ public List<Draft> read_not_synchronized_and_not_deleted_records(String logged_u
 		for(Draft draft : list_all_users)
 		{
 			
+		
+			
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(update_by_id_for_synchronization)) {
  
             // set the corresponding param
             pstmt.setBoolean(1, true);
             pstmt.setInt(2, draft.getId());
-            // update 
+            // update
             
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -484,5 +527,93 @@ public List<Draft> read_not_synchronized_and_not_deleted_records(String logged_u
 
 		
 	}
+
+	public void save_edited_records_from_client(Draft model) {
+				
+			Draft draft = read_by_date_of_add(model.getDate_of_note());
+	     
+			try (Connection conn = this.connect();
+	                PreparedStatement pstmt = conn.prepareStatement(update_edited_by_id)) {
+
+	            // set the corresponding param
+	            pstmt.setBoolean(1, true);
+				pstmt.setString(2, model.getTitle());
+				pstmt.setString(3, model.getNote());
+	            pstmt.setString(4, model.getDate_of_note());
+				pstmt.setBoolean(5, model.getDeleted());
+				pstmt.setBoolean(6,  model.getSynchronized_server());
+				pstmt.setString(7,  model.getOwner());
+				pstmt.setInt(8, model.getId());
+	            // update 
+	            
+	            pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+	        
+
+		//find by date_of_add;
+		//update by id from method uppon action;
+				
+	}
+
+
+
+
+	public List<Draft> read_edited_records(String logged_user) {
+		List<Draft> list = new ArrayList<Draft>();
+		
+		
+        try
+        (Connection conn = this.connect();
+        Statement stmt  = conn.createStatement();
+        ResultSet rs    = stmt.executeQuery(read_sql))
+        {
+        
+        while (rs.next()) {
+        	
+        	if(rs.getString("owner").equals(logged_user))
+        	{
+        
+        	boolean deleted = rs.getInt("deleted") != 0;	
+        	
+        	boolean edited_record = rs.getInt("edited_record") != 0;	
+        	
+        	
+        	if(edited_record)
+        	{
+			Draft draft = new Draft();
+			draft.setId(rs.getInt("id"));
+			draft.setDate_of_note(rs.getString("date_of_add"));
+			draft.setNote(rs.getString("note"));
+			draft.setTitle(rs.getString("title"));
+			draft.setDeleted(deleted);
+			draft.setOwner(rs.getString("owner"));
+			draft.setSynchronized_server(rs.getInt("synchronized_android") != 0);
+        	draft.setEdited_record(edited_record);
+        	
+        	list.add(draft);
+        	}
+        	
+        	}	
+        }
+      
+        }
+        catch(SQLException e )
+        {
+        	System.out.println(e);       
+        }
+        
+		return list;
+	
+	}
+
+
+
+
+
+
+
+
 
 }

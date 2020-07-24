@@ -79,13 +79,20 @@ public class NoteAdapter extends ArrayAdapter<Note>
         Button buttonDelete = view.findViewById(R.id.buttonDeleteNote);
         Button buttonEdit = view.findViewById(R.id.buttonEditNote);
 
+        //delete buttonEdit
+        ViewGroup layout = (ViewGroup) buttonEdit.getParent();
+        if(null!=layout)
+            layout.removeView(buttonEdit);
+        //...
+
+
         //adding a clicklistener to button
-        buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                updateNote(note);
-            }
-        });
+//        buttonEdit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                updateNote(note);
+//            }
+//        });
 
         //the delete operation
         buttonDelete.setOnClickListener(new View.OnClickListener() {

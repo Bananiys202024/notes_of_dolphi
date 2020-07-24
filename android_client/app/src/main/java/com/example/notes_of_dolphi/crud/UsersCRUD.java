@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.notes_of_dolphi.model.Draft;
 import com.example.notes_of_dolphi.model.Message;
 import com.example.notes_of_dolphi.model.User;
 
 public class UsersCRUD {
 
 	private final String create_sql = "INSERT INTO users(email, username, password, permission) VALUES(?, ?, ?, ?)";
-	private final String read_sql = "SELECT id, email, username , password, permission FROM users";
+	private final String read_sql = "SELECT * FROM users";
     private final String read_all_notes_sql = "SELECT id, email, username , password, permission, synchronized_server, deleted FROM users";
     private final String read_by_email = "SELECT id, email, username, password, permission, synchronized_server, deleted FROM users WHERE email = ?";
 
@@ -95,6 +96,9 @@ public class UsersCRUD {
 
 	//read
 	public boolean login(User user, SQLiteDatabase mDatabase) throws SQLException {
+
+        List<User> list = read(mDatabase);
+        System.out.println("size of list users---"+list);
 
 		String email = user.getEmail();
 		String password = user.getPassword();
@@ -340,6 +344,5 @@ public class UsersCRUD {
         }
 
     }
-
 
 }

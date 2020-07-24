@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             Synchronise synchronize = new Synchronise();
-
             boolean connection_with_server = synchronize.check_connection_with_server();
 
             Cashe.setConnection_with_server_for_this_session(connection_with_server);
@@ -84,7 +83,5 @@ public class LoginActivity extends AppCompatActivity {
         {
             System.out.println("Error----"+e);
         }
-
-
     }
 }

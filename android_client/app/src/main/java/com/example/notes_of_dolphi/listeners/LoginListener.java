@@ -35,10 +35,8 @@ public class LoginListener implements View.OnClickListener {
     public void onClick(View v) {
 
         Intent intent = null;
-        boolean input_data_all_right = LogInValidator.check_please_log_in_data(email_login, password_login);
         boolean does_login_exist_in_database = true;
         boolean does_password_right = true;
-        boolean result = input_data_all_right && does_login_exist_in_database && does_password_right;
 
         User user = new User();
         user.setEmail(this.email_login.getText().toString());

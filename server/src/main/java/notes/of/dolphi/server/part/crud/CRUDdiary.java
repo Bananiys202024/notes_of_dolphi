@@ -17,17 +17,17 @@ import com.example.notes_of_dolphi.model.User;
 
 public class CRUDdiary {
 
-	private final String read_sql = "SELECT id, title, note , date_of_add, deleted, synchronized_android, owner FROM notes";
+	private final String read_sql = "SELECT id, title, edited_record, note , date_of_add, deleted, synchronized_android, owner FROM notes";
 	private final String create_sql = "INSERT INTO notes(title, note, date_of_add, owner) VALUES(?, ?, ?, ?)";
 	private final String create_synchronization_sql = "INSERT INTO notes(title, note, date_of_add, owner, synchronized_android) VALUES(?, ?, ?, ?, ?)";
 	private final String synchronized_create_sql = "INSERT INTO notes(title, note, date_of_add, owner, synchronized_android) VALUES(?,?,?,?,?)";
 	private final String sql = "DELETE FROM notes WHERE id = ?";
 	private final String read_by_id = "SELECT id, title, note , date_of_add, owner FROM notes WHERE id= ?";
-	private final String read_by_date_of_add = "SELECT id, title, note , date_of_add, owner FROM notes WHERE date_of_add= ?";
+	private final String read_by_date_of_add = "SELECT id, edited_record, title, note , date_of_add, owner FROM notes WHERE date_of_add= ?";
 	private final String update_by_id = "UPDATE notes SET title=?, note=? WHERE id= ?";
 	private final String update_by_id_for_synchronization = "UPDATE notes SET synchronized_android= ? WHERE id= ?";
 	private final String update_deleted_by_id = "UPDATE notes SET deleted=? WHERE id= ?";
-
+	private final String update_edited_by_id = "UPDATE notes SET edited_record=?,title=?, edited_record=?, note=? , date_of_add=?, deleted=?, synchronized_android=?, owner=? WHERE id= ?";
 	
 	
 	private Connection connect() {
@@ -338,11 +338,12 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
 	     pstmt.setString(1, note.getTitle());
 	     pstmt.setString(2, note.getNote());
 	     pstmt.setString(3, note.getDate_of_note());
-	     System.out.println("Checking time of creation----"+note.getDate_of_note());
 	     pstmt.setString(4, logged_user);
 	     pstmt.setBoolean(5, true);
 	     pstmt.execute();
 	}
+	
+	
 
 	public void put_mark_on_deleted_records(List<Note> list) 
 	{
@@ -478,6 +479,85 @@ public List<Note> read_not_synchronized_and_not_deleted_records(String logged_us
         	note.setSynchronized_server(synchronized_record);
         	
         	list.add(note);
+        	}	
+        }
+      
+        }
+        catch(SQLException e )
+        {
+        	System.out.println(e);       
+        }
+        
+		return list;
+		
+	}
+
+	public void save_edited_records_from_client(Note model) {
+	
+	
+			Note note = read_by_date_of_add(model.getDate_of_note());
+			
+	        try (Connection conn = this.connect();
+	                PreparedStatement pstmt = conn.prepareStatement(update_edited_by_id)) {
+	        	
+	            // set the corresponding param
+	            pstmt.setBoolean(1, false);
+	            pstmt.setString(2, model.getTitle());
+	            pstmt.setString(3, model.getNote());
+	            pstmt.setString(4, model.getDate_of_note());
+	            pstmt.setBoolean(5, model.getDeleted());
+	            pstmt.setBoolean(6, true);
+	        	pstmt.setString(7, model.getOwner());
+	            
+	        	pstmt.setInt(8, note.getId());
+	            // update 
+	            
+	            pstmt.executeUpdate();
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+	        
+		
+			//find by date_of_add
+		//update by id from upper action;
+		
+	}
+
+	public List<Note> read_edited_records(String logged_user) {
+	
+		//find by date_of_add;
+		//and update by id from upper action;
+	
+		List<Note> list = new ArrayList<Note>();
+		
+        try
+        (Connection conn = this.connect();
+        Statement stmt  = conn.createStatement();
+        ResultSet rs    = stmt.executeQuery(read_sql))
+        {
+        
+        while (rs.next()) {
+        	
+        	if(rs.getString("owner").equals(logged_user))
+        	{
+        
+        	boolean deleted = rs.getInt("deleted") != 0;
+        	boolean edited_record = rs.getInt("edited_record") != 0;
+        	
+        	if(edited_record)
+        	{
+			Note note = new Note();
+        	note.setId(rs.getInt("id"));
+        	note.setDate_of_note(rs.getString("date_of_add"));
+        	note.setNote(rs.getString("note"));
+        	note.setTitle(rs.getString("title"));
+        	note.setDeleted(deleted);
+        	note.setOwner(rs.getString("owner"));
+        	note.setSynchronized_server(rs.getInt("synchronized_android") != 0);
+        	note.setEdited_record(edited_record);
+        	list.add(note);
+        	}
+        	
         	}	
         }
       

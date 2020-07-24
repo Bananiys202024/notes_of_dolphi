@@ -17,6 +17,7 @@ import com.example.notes_of_dolphi.server.synchronize.asyncTask.SocketCheckConne
 import com.example.notes_of_dolphi.server.synchronize.asyncTask.SocketForTableNotes;
 import com.example.notes_of_dolphi.server.synchronize.asyncTask.SocketForTableUser;
 import com.example.notes_of_dolphi.server.synchronize.asyncTask.SynchDeletedRecordsSocket;
+import com.example.notes_of_dolphi.server.synchronize.asyncTask.SynchEditedRecordsSocket;
 import com.example.notes_of_dolphi.server.synchronize.asyncTask.TotalSynchronization.SocketForTableDraftTotalSynch;
 import com.example.notes_of_dolphi.server.synchronize.asyncTask.TotalSynchronization.SocketForTableNotesTotalSynch;
 import com.example.notes_of_dolphi.server.synchronize.asyncTask.TotalSynchronization.SocketForTableUserTotalSynch;
@@ -112,6 +113,7 @@ public class Synchronise  {
         SocketForTableNotes socket_notes = new SocketForTableNotes();
         List<Note> list_from_server =  socket_notes.execute(local_list_all_not_synchronized_notes).get();
 
+        if(list_from_server != null)
         for(Note note : list_from_server)
         {
             notes_crud.create(note, mDatabase);
@@ -133,6 +135,7 @@ public class Synchronise  {
         SocketForTableNotesTotalSynch socket_notes = new SocketForTableNotesTotalSynch();
         List<Note> list_from_server =  socket_notes.execute(local_list_all_not_synchronized_notes).get();
 
+        if(list_from_server != null)
         for(Note note : list_from_server)
         {
             notes_crud.create_synch(note, mDatabase);
@@ -153,10 +156,13 @@ public class Synchronise  {
             users_crud.put_mark_on_synchronized_users(local_list_all_not_synchronized_users, mDatabase);
         //..
 
+        System.out.println("Start socket");
         //finish server part
         SocketForTableUserTotalSynch socket_user = new SocketForTableUserTotalSynch();
         List<User> list_from_server = (List<User>) socket_user.execute(local_list_all_not_synchronized_users).get();
+        System.out.println("End socket");
 
+        if(list_from_server != null)
         for(User user : list_from_server)
         {
             users_crud.create_synch(user, mDatabase);
@@ -182,6 +188,7 @@ public class Synchronise  {
         SocketForTableDraftTotalSynch socket_notes = new SocketForTableDraftTotalSynch();
         List<Draft> list_from_server =  socket_notes.execute(local_list_all_not_synchronized_drafts).get();
 
+        if(list_from_server != null)
         for(Draft draft : list_from_server)
         {
             draft_crud.create_synch(draft, mDatabase);
@@ -196,23 +203,80 @@ public class Synchronise  {
         Boolean is_draft_table_empty = check_if_table_draft_empty(mDatabase);
         Boolean is_note_table_empty = check_if_table_notes_empty(mDatabase);
 
+        System.out.println("Checking boolean---"+is_user_table_empty+"-------"+synchronize_table_user);
+
+//            synchronize_all_edited_records_in_database(mDatabase);
+
+        System.out.println("mark1");
             if(is_user_table_empty)
             totally_synchronisation_table_user(mDatabase);
 
+        System.out.println("mark2");
             if(is_draft_table_empty)
             totally_synchronisation_table_draft(mDatabase);
 
+            System.out.println("mark3");
             if(is_note_table_empty)
             totally_synchronisation_table_notes(mDatabase);
 
+            System.out.println("mark4");
             if(synchronize_table_draft && !is_draft_table_empty)
             synchronise_table_draft(mDatabase);
 
+
+        System.out.println("mark6");
             if(synchronize_table_notes && !is_note_table_empty)
             synchronise_table_notes(mDatabase);
 
+
+        System.out.println("mark6");
             if(synchronize_table_user && !is_user_table_empty)
             synchronise_table_user(mDatabase);
+
+    }
+
+    private void synchronize_all_edited_records_in_database(SQLiteDatabase mDatabase) throws ExecutionException, InterruptedException {
+
+        UsersCRUD users_crud = new UsersCRUD();
+        DiaryCRUD diary_crud = new DiaryCRUD();
+        DraftCRUD draft_crud = new DraftCRUD();
+
+        List<Draft> draft_list_edited_records = draft_crud.read_edited_records(mDatabase);
+        List<Note> note_list_edited_records = diary_crud.read_edited_records(mDatabase);
+
+        System.out.println("Mark778132");
+        if(draft_list_edited_records != null)
+        for(Draft draft : draft_list_edited_records)
+        {
+            System.out.println(draft.getDate_of_note());
+        }
+
+        String logged_user = Cashe.getLogged_user();
+
+        User user = new User();
+        user.setEmail(logged_user);
+
+        Message message = new Message();
+        message.setList_all_drafts(draft_list_edited_records);
+        message.setList_all_notes(note_list_edited_records);
+        message.setMessage("synchronize_all_edited_records");
+        message.setUser(user);
+
+        SynchEditedRecordsSocket socket_deleted_records = new SynchEditedRecordsSocket();
+        Message msg = socket_deleted_records.execute(message).get();
+
+        //save deleted records from server
+        //set to column deleted true
+        List<Note> list_all_notes = msg.getList_all_notes();
+        List<Draft> list_all_drafts = msg.getList_all_drafts();
+
+        if(list_all_notes != null)
+        for(Note note : list_all_notes)
+        diary_crud.create_edited_record(mDatabase, note);
+
+        if(list_all_drafts != null)
+        for(Draft draft : list_all_drafts)
+        draft_crud.create_edited_record(mDatabase, draft);
 
     }
 
@@ -278,16 +342,27 @@ public class Synchronise  {
         List<Draft> local_list_all_not_synchronized_drafts = draft_crud.read_not_synchronized_drafts(mDatabase);
         if(local_list_all_not_synchronized_drafts != null)
         {
-            for(Draft draft : local_list_all_not_synchronized_drafts) {
+            for(Draft draft : local_list_all_not_synchronized_drafts)
+            {
                 draft_crud.put_mark_on_synchronized_drafts(draft, mDatabase);
             }
         }
-            //..
+        //..
 
+        System.out.println("This list from synchronize_table_draft");
+        for(Draft draft : local_list_all_not_synchronized_drafts) {
+            System.out.println("Start");
+            System.out.println(draft.getEdited_record());
+            System.out.println(draft.getDate_of_note());
+            System.out.println(draft.getDeleted());
+            System.out.println(draft.getSynchronized_server());
+            System.out.println("End");
+        }
         //finish server part
         SocketForTableDraft socket_notes = new SocketForTableDraft();
         List<Draft> list_from_server =  socket_notes.execute(local_list_all_not_synchronized_drafts).get();
 
+        if(list_from_server != null)
         for(Draft draft : list_from_server)
         {
             draft_crud.create(draft, mDatabase);
@@ -322,10 +397,8 @@ public class Synchronise  {
     public boolean check_connection_with_server() throws IOException {
 
         try {
-
             SocketCheckConnection check_connection = new SocketCheckConnection();
             boolean result = check_connection.execute().get();
-
             return result;
         }
         catch(Exception e)

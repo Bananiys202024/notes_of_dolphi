@@ -48,7 +48,7 @@ public class Create extends AsyncTask<User, Void, String> {
 
             String result = (String) object_input_stream.readObject();
 
-            return "Note successfully created";
+            return "user successfully created";
         }
         catch(Exception e)
         {

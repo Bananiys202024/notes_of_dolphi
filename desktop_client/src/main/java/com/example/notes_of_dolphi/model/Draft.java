@@ -11,6 +11,7 @@ public class Draft implements Serializable {
     private String owner;
     private Boolean synchronized_server;
     private Boolean deleted;
+    private Boolean edited_record;
 
     public int getId() {
         return id;
@@ -66,5 +67,13 @@ public class Draft implements Serializable {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Boolean getEdited_record() {
+        return edited_record;
+    }
+
+    public void setEdited_record(Boolean edited_record) {
+        this.edited_record = edited_record;
     }
 }

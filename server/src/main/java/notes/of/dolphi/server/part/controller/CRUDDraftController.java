@@ -17,6 +17,7 @@ import notes.of.dolphi.server.part.crud.CRUDdiary;
 import notes.of.dolphi.server.part.crud.DraftCRUD;
 import notes.of.dolphi.server.part.crud.JDBC_initializing;
 import notes.of.dolphi.server.part.crud.UsersCRUD;
+import notes.of.dolphi.server.part.util.Filter;
 
 public class CRUDDraftController {
 
@@ -102,17 +103,27 @@ public static void change_column_synchronized_with_android_table_draft(Socket so
 		
 		//save drafts in database
 		List<Draft> list = message.getList_all_drafts();
+		
+		//filter list
+		//check if we already have 
+		//same recordes in database
+		/*
+		 * System.out.println("Before--"+list);
+		 * 
+		 * if(list != null) list = Filter.filter_list(list);
+		 * 
+		 * System.out.println("After--"+list); //.. //.. //..
+		 */
 		String logged_user = message.getUser().getEmail();
 		DraftCRUD draft_crud = new DraftCRUD();
-
+			
 		if(list != null)
 		for(Draft draft : list)
 		{
 		draft_crud.create(draft, logged_user);
-		draft_crud.change_column_synchronized_with_android_to_true(message.getList_all_drafts());
 		}
 		//
-		
+	
 		List<Draft> result = draft_crud.read_not_synchronized_and_not_deleted_records(message.getUser().getEmail());
 		
 		//send request from server

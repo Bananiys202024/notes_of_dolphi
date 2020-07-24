@@ -15,6 +15,7 @@ import com.example.notes_of_dolphi.server.synchronize.Synchronise;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class RegistrationListener implements View.OnClickListener {
@@ -46,6 +47,15 @@ public class RegistrationListener implements View.OnClickListener {
         Intent intent = null;
         boolean input_data_all_right = LogInValidator.check_please_registration_data(user);
 
+        int user_table_size = 0;
+
+        com.example.notes_of_dolphi.crud.UsersCRUD local_users_crud = new com.example.notes_of_dolphi.crud.UsersCRUD();
+        List<User> list_users = local_users_crud.read(mDatabase);
+        if(list_users != null)
+        user_table_size = list_users.size();
+
+        boolean only_one_user = user_table_size == 0;
+
         Synchronise synchronize = new Synchronise();
 
         boolean connection_with_server = false;
@@ -58,7 +68,7 @@ public class RegistrationListener implements View.OnClickListener {
 
 
         if(connection_with_server) {
-            if (input_data_all_right) {
+            if (input_data_all_right && only_one_user) {
 
                 //send request to server about create login;
 

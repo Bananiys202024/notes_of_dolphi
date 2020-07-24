@@ -2,7 +2,7 @@
 
 public class Constants {
 
-	final static int PORT = 2880;
+	final static int PORT = 3087;
 	final static String ip_host = "raspberrypi";
 	
 	public static int getPort() {

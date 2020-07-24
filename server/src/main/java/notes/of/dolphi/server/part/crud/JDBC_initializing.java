@@ -53,7 +53,8 @@ public class JDBC_initializing {
                + "    synchronized_client boolean DEFAULT 0 NOT NULL, \n"
                + "    synchronized_android boolean DEFAULT 0 NOT NULL, \n"
                + "    deleted boolean DEFAULT 0 NOT NULL, \n"
-			   + "    synchronized_deleted boolean DEFAULT 0 NOT NULL \n"
+			   + "    synchronized_deleted boolean DEFAULT 0 NOT NULL, \n"
+			   + "    edited_record boolean DEFAULT 0 \n"
                + ");";
        
        try (Connection conn = DriverManager.getConnection(url);
@@ -111,7 +112,8 @@ public class JDBC_initializing {
               + "    synchronized_client boolean DEFAULT 0 NOT NULL, \n"
               + "    synchronized_android boolean DEFAULT 0 NOT NULL, \n"
               + "    deleted boolean DEFAULT 0 NOT NULL, \n"
-			  + "    synchronized_deleted boolean DEFAULT 0 NOT NULL \n"
+			  + "    synchronized_deleted boolean DEFAULT 0 NOT NULL, \n"
+			  + "    edited_record boolean DEFAULT 0 \n"
               + ");";
       
       try (Connection conn = DriverManager.getConnection(url);

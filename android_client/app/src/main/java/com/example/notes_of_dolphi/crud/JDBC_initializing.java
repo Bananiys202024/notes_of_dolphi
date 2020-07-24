@@ -25,7 +25,6 @@ public class JDBC_initializing {
 		mDatabase.execSQL("DROP TABLE IF EXISTS notes");
 		mDatabase.execSQL("DROP TABLE IF EXISTS draft");
 		mDatabase.execSQL("DROP TABLE IF EXISTS users");
-
 	}
 
 	private void create_table_notes_if_note_exist(SQLiteDatabase mDatabase) {
@@ -38,8 +37,9 @@ public class JDBC_initializing {
                         "    owner text NOT NULL, \n" +
 						"    synchronized_server boolean  DEFAULT 0 NOT NULL, \n" +
 						"    deleted boolean DEFAULT 0 NOT NULL, \n" +
-						"    synchronized_deleted boolean DEFAULT 0 NOT NULL \n" +
-                        ");"
+						"    synchronized_deleted boolean DEFAULT 0 NOT NULL, \n" +
+						"    edited_record boolean DEFAULT 0 \n" +
+				");"
         );
 	}
 
@@ -68,7 +68,8 @@ public class JDBC_initializing {
 						"    owner text NOT NULL, \n" +
 						"    synchronized_server boolean  DEFAULT 0 NOT NULL, \n" +
 						"    deleted boolean DEFAULT 0 NOT NULL, \n" +
-						"    synchronized_deleted boolean DEFAULT 0 NOT NULL \n" +
+						"    synchronized_deleted boolean DEFAULT 0 NOT NULL, \n" +
+						"    edited_record boolean DEFAULT 0  \n" +
 						");"
 		);
 	}

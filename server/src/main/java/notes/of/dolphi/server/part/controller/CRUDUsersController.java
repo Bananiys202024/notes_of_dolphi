@@ -134,6 +134,11 @@ public class CRUDUsersController {
 		for(Note note : list)
 		{
 			diary_crud.create_synchronized_list(note, logged_user);
+		
+//			draft_crud.create(draft, logged_user);
+//			draft_crud.change_column_synchronized_with_android_to_true(message.getList_all_drafts());
+//			
+		
 		}
 		}
 		

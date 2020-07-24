@@ -34,6 +34,9 @@ public class SocketForTableUserTotalSynch extends AsyncTask<List<User>, Void, Li
             message.setMessage("totally_synchronize_from_android_table_users");
             message.setList_all_users(list_all_users[0]);
 
+
+
+            System.out.println("sending");
             List<Message> request = new ArrayList();
             request.add(message);
             object_output_stream.writeObject(request);
@@ -45,6 +48,9 @@ public class SocketForTableUserTotalSynch extends AsyncTask<List<User>, Void, Li
 
             //add alert, how much notes was changed;
             List<User> result = (List<User>) object_input_stream.readObject();
+
+
+            System.out.println("Finish sending");
 
             return result;
 

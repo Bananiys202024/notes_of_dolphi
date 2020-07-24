@@ -50,16 +50,14 @@ public class DraftTabFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-
         View root = inflater.inflate(R.layout.fragment_draft, container,false);
 
         root.findViewById(R.id.add_icon_for_draft_tab).setOnClickListener((View.OnClickListener) new showPageAddDraft());
         listViewNotesForDraftTab = root.findViewById(R.id.listViewNotesForDraftTab);
 
-
         DraftCRUD draft_crud = new DraftCRUD();
         List<Draft> list = null;
-        list = draft_crud.read(mDatabase);
+        list = draft_crud.read_drafts_for_define_user(mDatabase);
 
         if(list != null) {
             Collections.reverse(list);

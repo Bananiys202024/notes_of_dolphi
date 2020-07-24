@@ -11,6 +11,7 @@ public class Note implements Serializable {
 	private String owner;
 	private Boolean synchronized_server;
 	private Boolean deleted;
+	private Boolean edited_record;
 
 	static final long serialVersionUID = -875341142932566369L;
 
@@ -82,4 +83,13 @@ public class Note implements Serializable {
 	public static long getSerialVersionUID() {
 		return serialVersionUID;
 	}
+
+	public Boolean getEdited_record() {
+		return edited_record;
+	}
+
+	public void setEdited_record(Boolean edited_record) {
+		this.edited_record = edited_record;
+	}
+
 }

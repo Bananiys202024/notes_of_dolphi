@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.notes_of_dolphi.model.Cashe;
 import com.example.notes_of_dolphi.model.Draft;
+import com.example.notes_of_dolphi.model.Note;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public class DraftCRUD {
 
-    private final String read_sql = "SELECT id, title, note , date_of_add, owner, deleted, synchronized_server FROM draft";
+    private final String read_sql = "SELECT id, title, note , date_of_add, owner, deleted, edited_record, synchronized_server FROM draft";
     private final String create_sql = "INSERT INTO draft(title, note, date_of_add, user) VALUES(?, ?, ?, ?)";
     private final String sql = "DELETE FROM draft WHERE id = ?";
     private final String read_by_id = "SELECT id, title, note , date_of_add, owner FROM draft WHERE id= ?";
@@ -121,6 +122,57 @@ public class DraftCRUD {
         return null;
     }
 
+    public List<Draft> read_drafts_for_define_user(SQLiteDatabase mDatabase)
+    {
+        String logged_user = Cashe.getLogged_user();
+
+        List<Draft> list = new ArrayList<Draft>();
+
+        Cursor cursor = mDatabase.rawQuery(read_sql, null);
+        if(cursor.moveToFirst()) {
+            do {
+
+                String owner_of_draft = cursor.getString(cursor.getColumnIndex("owner"));
+
+                if(owner_of_draft.equals(logged_user)) {
+
+
+                    if(owner_of_draft.equals(logged_user)) {
+
+                        Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
+                        Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
+
+                        if (!deleted) {
+                            Draft draft = new Draft();
+                            draft.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+                            draft.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                            draft.setNote(cursor.getString(cursor.getColumnIndex("note")));
+                            draft.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_add")));
+                            draft.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+                            draft.setDeleted(deleted);
+                            draft.setSynchronized_server(synchronized_server);
+
+                            list.add(draft);
+                        }
+
+                    }
+                }
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+
+            return list;
+
+
+        }
+        cursor.close();
+
+
+        return null;
+    }
+
+
     public List<Draft> read(SQLiteDatabase mDatabase)
     {
         String logged_user = Cashe.getLogged_user();
@@ -131,21 +183,22 @@ public class DraftCRUD {
          if(cursor.moveToFirst()) {
             do {
 
-                Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
-                Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
 
-                if(!deleted) {
-                    Draft draft = new Draft();
-                    draft.setTitle(cursor.getString(cursor.getColumnIndex("title")));
-                    draft.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                    draft.setNote(cursor.getString(cursor.getColumnIndex("note")));
-                    draft.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_add")));
-                    draft.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
-                    draft.setDeleted(deleted);
-                    draft.setSynchronized_server(synchronized_server);
+                    Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
+                    Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
 
-                    list.add(draft);
-                }
+                    if (!deleted) {
+                        Draft draft = new Draft();
+                        draft.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+                        draft.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                        draft.setNote(cursor.getString(cursor.getColumnIndex("note")));
+                        draft.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_add")));
+                        draft.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+                        draft.setDeleted(deleted);
+                        draft.setSynchronized_server(synchronized_server);
+
+                        list.add(draft);
+                    }
 
             } while (cursor.moveToNext());
 
@@ -237,26 +290,55 @@ public class DraftCRUD {
     }
 
 
+    public boolean create_edited_draft(Draft draft, SQLiteDatabase mDatabase)
+    {
+        try {
+            ContentValues values = new ContentValues();
+            values.put("note", draft.getNote());
+            values.put("date_of_add", draft.getDate_of_note());
+            values.put("owner", draft.getOwner());
+            values.put("title", draft.getTitle());
+            values.put("deleted", false);
+            values.put("synchronized_server", false);
+            values.put("id", draft.getId());
+            values.put("edited_record", true);
 
-    public boolean update(Draft draft, SQLiteDatabase mDatabase) {
+            boolean created_successfull = mDatabase.insert("draft", null, values) > 0;
+            System.out.println("result---" + created_successfull);
 
-        ContentValues values = new ContentValues();
-        values.put("note", draft.getNote());
-        values.put("date_of_add", draft.getDate_of_note());
-        values.put("owner", draft.getOwner());
-        values.put("title",draft.getTitle());
-        values.put("deleted", draft.getDeleted());
-        values.put("synchronized_server", draft.getSynchronized_server());
-        values.put("id", draft.getId());
+            return created_successfull;
 
+        } catch(Exception e)
+        {
+            System.out.println("Error- create note---"+e);
+        }
 
-        String where = "id = ?";
-        String[] whereArgs = { Integer.toString(draft.getId()) };
-        boolean updated_successful = mDatabase.update("draft", values, where, whereArgs) > 0;
+        return false;
 
-        return updated_successful;
     }
 
+    public void update(Draft draft, SQLiteDatabase mDatabase) {
+
+//        delete(draft, mDatabase);
+//        create_edited_draft(draft, mDatabase);
+
+            ContentValues values = new ContentValues();
+            values.put("note", draft.getNote());
+            values.put("date_of_add", draft.getDate_of_note());
+            values.put("owner", draft.getOwner());
+            values.put("title", draft.getTitle());
+            values.put("deleted", draft.getDeleted());
+            values.put("synchronized_server", draft.getSynchronized_server());
+            values.put("id", draft.getId());
+            values.put("edited_record", true);
+
+            String where = "id = ?";
+            String[] whereArgs = {Integer.toString(draft.getId())};
+            boolean updated_successful = mDatabase.update("draft", values, where, whereArgs) > 0;
+
+
+
+    }
 
     public void create_list(List<Draft> list_of_not_synchronized_all_users_from_server, SQLiteDatabase mDatabase) {
 
@@ -323,7 +405,6 @@ public class DraftCRUD {
 
     public void put_mark_on_synchronized_drafts(Draft draft, SQLiteDatabase mDatabase)
     {
-
         ContentValues values = new ContentValues();
         values.put("note", draft.getNote());
         values.put("date_of_add", draft.getDate_of_note());
@@ -332,7 +413,7 @@ public class DraftCRUD {
         values.put("deleted", draft.getDeleted());
         values.put("synchronized_server", true);
         values.put("id", draft.getId());
-
+        values.put("edited_record", draft.getEdited_record());
 
         String where = "id = ?";
         String[] whereArgs = { Integer.toString(draft.getId()) };
@@ -409,7 +490,7 @@ public class DraftCRUD {
 
     private Draft find_record_by_date_of_add(Draft model, SQLiteDatabase mDatabase)
     {
-        String read_by_date_of_add = "select * from draft where date_of_add='" + model.getDate_of_note() + "'';";
+        String read_by_date_of_add = "select * from draft where date_of_add='" + model.getDate_of_note() + "';";
 
         Draft draft = new Draft();
         Cursor cursor = mDatabase.rawQuery(read_by_date_of_add, null);
@@ -422,7 +503,7 @@ public class DraftCRUD {
             draft.setTitle(cursor.getString(cursor.getColumnIndex("title")));
             draft.setId(cursor.getInt(cursor.getColumnIndex("id")));
             draft.setNote(cursor.getString(cursor.getColumnIndex("note")));
-            draft.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_note")));
+            draft.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_add")));
             draft.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
             draft.setDeleted(deleted);
             draft.setSynchronized_server(synchronized_server);
@@ -449,6 +530,7 @@ public class DraftCRUD {
             values.put("title", draft.getTitle());
             values.put("deleted", false);
             values.put("synchronized_server", true);
+            values.put("edited_record", draft.getEdited_record());
 
 
             boolean created_successfull = mDatabase.insert("draft", null, values) > 0;
@@ -492,6 +574,76 @@ public class DraftCRUD {
 
         return false;
 
+
+    }
+
+    public List<Draft> read_edited_records(SQLiteDatabase mDatabase)
+    {
+        String logged_user = Cashe.getLogged_user();
+
+        List<Draft> list = new ArrayList<Draft>();
+
+        Cursor cursor = mDatabase.rawQuery(read_sql, null);
+        if(cursor.moveToFirst()) {
+            do {
+
+                Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
+                Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
+                Boolean edited_record = cursor.getInt(cursor.getColumnIndex("edited_record")) != 0;
+
+
+                if(edited_record) {
+                    Draft draft = new Draft();
+                    draft.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+                    draft.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                    draft.setNote(cursor.getString(cursor.getColumnIndex("note")));
+                    draft.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_add")));
+                    draft.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+                    draft.setDeleted(deleted);
+                    draft.setSynchronized_server(synchronized_server);
+                    draft.setEdited_record(edited_record);
+
+                    list.add(draft);
+                }
+
+            } while (cursor.moveToNext());
+
+            cursor.close();
+
+            return list;
+
+
+        }
+        cursor.close();
+
+
+        return null;
+    }
+
+    public void create_edited_record(SQLiteDatabase mDatabase, Draft draft)
+    {
+
+        //read by date of add
+        Draft model = find_record_by_date_of_add(draft, mDatabase);
+
+        //update record by id; from upper action;
+        boolean size_of_table_notes_zero =  read_all(mDatabase) == null;
+
+        if(!size_of_table_notes_zero) {
+            ContentValues values = new ContentValues();
+            values.put("note", model.getNote());
+            values.put("date_of_add", model.getDate_of_note());
+            values.put("owner", model.getOwner());
+            values.put("title", model.getTitle());
+            values.put("deleted", true);
+            values.put("synchronized_server", model.getSynchronized_server());
+            values.put("id", model.getId());
+            values.put("edited_record", false);
+
+            String where = "id = ?";
+            String[] whereArgs = {Integer.toString(model.getId())};
+            boolean updated_successful = mDatabase.update("notes", values, where, whereArgs) > 0;
+        }
 
     }
 }

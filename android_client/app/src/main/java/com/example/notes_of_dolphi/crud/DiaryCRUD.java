@@ -17,7 +17,7 @@ import com.example.notes_of_dolphi.model.Note;
 
 public class DiaryCRUD {
 
-	private final String read_sql = "SELECT id, title, note , date_of_add, owner, deleted, synchronized_server FROM notes";
+	private final String read_sql = "SELECT id, edited_record, title, note , date_of_add, owner, deleted, synchronized_server FROM notes";
 	private final String create_sql = "INSERT INTO notes(title, note, date_of_add, user) VALUES(?, ?, ?, ?)";
 	private final String sql = "DELETE FROM notes WHERE id = ?";
 	private final String read_by_id = "SELECT id, title, note , date_of_add, owner FROM notes WHERE id= ?";
@@ -257,12 +257,11 @@ public class DiaryCRUD {
 		values.put("deleted", note.getDeleted());
 		values.put("synchronized_server", note.getSynchronized_server());
 	    values.put("id", note.getId());
-
+		values.put("edited_record", true);
 
 	    String where = "id = ?";
 	    String[] whereArgs = { Integer.toString(note.getId()) };
 	    boolean updated_successful = mDatabase.update("notes", values, where, whereArgs) > 0;
-
 
 	    return updated_successful;
 	}
@@ -488,6 +487,78 @@ public class DiaryCRUD {
 
 
 		return false;
+	}
+
+	public List<Note> read_edited_records(SQLiteDatabase mDatabase)
+	{
+
+		String logged_user = Cashe.getLogged_user();
+
+		List<Note> list = new ArrayList<Note>();
+
+		Cursor cursor = mDatabase.rawQuery(read_sql, null);
+
+		if(cursor.moveToFirst()) {
+			do {
+
+				Boolean synchronized_server = cursor.getInt(cursor.getColumnIndex("synchronized_server")) != 0;
+				Boolean deleted = cursor.getInt(cursor.getColumnIndex("deleted")) != 0;
+				Boolean edited_record = cursor.getInt(cursor.getColumnIndex("edited_record")) != 0;
+
+				if(edited_record) {
+
+					Note note = new Note();
+					note.setTitle(cursor.getString(cursor.getColumnIndex("title")));
+					note.setId(cursor.getInt(cursor.getColumnIndex("id")));
+					note.setNote(cursor.getString(cursor.getColumnIndex("note")));
+					note.setDate_of_note(cursor.getString(cursor.getColumnIndex("date_of_add")));
+					note.setOwner(cursor.getString(cursor.getColumnIndex("owner")));
+					note.setDeleted(deleted);
+					note.setSynchronized_server(synchronized_server);
+					note.setEdited_record(edited_record);
+
+					list.add(note);
+				}
+
+			} while (cursor.moveToNext());
+
+			cursor.close();
+			return list;
+
+
+		}
+		cursor.close();
+
+
+		return null;
+
+	}
+
+	public void create_edited_record(SQLiteDatabase mDatabase, Note note)
+	{
+
+		//read by date of add
+		Note model = find_record_by_date_of_add(note, mDatabase);
+
+		//update record by id; from upper action;
+
+		boolean size_of_table_notes_zero =  read_all(mDatabase) == null;
+
+		if(!size_of_table_notes_zero) {
+			ContentValues values = new ContentValues();
+			values.put("note", model.getNote());
+			values.put("date_of_add", model.getDate_of_note());
+			values.put("owner", model.getOwner());
+			values.put("title", model.getTitle());
+			values.put("deleted", true);
+			values.put("synchronized_server", model.getSynchronized_server());
+			values.put("id", model.getId());
+			values.put("edited_record", false);
+
+			String where = "id = ?";
+			String[] whereArgs = {Integer.toString(model.getId())};
+			boolean updated_successful = mDatabase.update("notes", values, where, whereArgs) > 0;
+		}
 	}
 
 }

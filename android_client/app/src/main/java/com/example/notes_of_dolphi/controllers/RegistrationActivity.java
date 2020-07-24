@@ -45,5 +45,4 @@ public class RegistrationActivity extends AppCompatActivity {
 
         create_new_user.setOnClickListener((View.OnClickListener) new RegistrationListener(this.password_registration, this.email_registration, this.username_registration, this.phone_registration, mDatabase));
     }
-
 }
