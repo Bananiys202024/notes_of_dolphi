@@ -13,3 +13,7 @@
     Linux： Arch Linux<br>
     Other: ---<br>
 </h6>
+
+
+<h2>Conclusion about this app</h2>
+      Use external libraries!!!Because you have risk: "Don't finish project, cuz many bugs, errors and need create many tests".
