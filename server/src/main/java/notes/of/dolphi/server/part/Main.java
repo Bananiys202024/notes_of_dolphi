@@ -20,7 +20,11 @@ public class Main
 		
         try {
             while (true) {
-                // Блокируется до возникновения нового соединения:
+
+    
+			System.out.println("Server started on ipHost:"+Constants.getIpHost()+", and on port:"+ Constants.getPort());
+		    
+		// Блокируется до возникновения нового соединения:
                 Socket socket = server.accept();
                 serverList.add(new MainController(socket)); // добавить новое соединенние в список
             }

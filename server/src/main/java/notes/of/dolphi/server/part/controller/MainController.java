@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
 
+import com.example.notes_of_dolphi.model.Constants;
 import com.example.notes_of_dolphi.model.Message;
 
 import notes.of.dolphi.server.part.socket.actions.orders.ExecutorOforders;
@@ -27,6 +28,7 @@ public class MainController extends Thread {
 		Message message = null;
 		
 		try {
+
 			message = GetterOforders.get_request_from_client(socket);
 			ExecutorOforders.execute_order_from_client(socket, message);
 		} catch (ClassNotFoundException e) {
