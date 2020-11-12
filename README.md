@@ -3,6 +3,8 @@
 <h2>Describe</h2>
  Application diary. Application has client desktop for linux, client desktop for Android and server;<br>
  All connections is implemented with help of sockets. You can find more details about applicaiton inside each folder.
+ Application requires refactor code. In last realese application fall down because attempts of implementing simultaneously synchronization in offline and offline of notes on client Android and client laptop side and server. So for a while application has 
+ troubles. I don't use this application anymore. I did create for myself better application, simple, no bags , you can find by this link https://github.com/Bananiys202024/Notebook
 
 <h2>Frameworks and tools</h2>
 
